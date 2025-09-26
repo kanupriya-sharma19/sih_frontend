@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { RailwayAlert } from "@/components/railway_alert";
 import { RailwayHeader } from "@/components/railway-header";
+import { DelayDistributionChart } from "@/components/pie";
 import { MetricCard } from "@/components/metric-card";
+import { PitLineChart } from "@/components/pit_line";
+import { BotsPlatformChart } from "@/components/bots_platform";
 import { PassengerFlowChart } from "@/components/passenger-flow-chart";
 import { HourlyDelayChart } from "@/components/hourly";
 import { PeakHoursChart } from "@/components/bagraph_rush";
@@ -53,52 +56,51 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          <MetricCard
-            title="Section Passengers"
-            value="8432"
-            subtitle="2.5% from yesterday"
-            icon={Users}
-            iconColor="text-blue-500"
-          />
-          <MetricCard
-            title="Average Section Delay"
-            value="12.1 min"
-            icon={Clock}
-            iconColor="text-orange-500"
-            subtitle="2.5% from yesterday"
-          />
-          <MetricCard
-            title="Active Trains"
-            value="67"
-            icon={Train}
-            iconColor="text-green-500"
-            subtitle="2.5% from yesterday"
-          />
-          <MetricCard
-            title="Critical Delays"
-            value="2"
-            icon={AlertTriangle}
-            iconColor="text-red-500"
-            subtitle="2.5% from yesterday"
-          />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <MetricCard
+    title="Section Passengers"
+    value="8432"
+    subtitle="2.5% from yesterday"
+    icon={Users}
+    iconColor="text-blue-500"
+  />
+  <MetricCard
+    title="Average Section Delay"
+    value="12.1 min"
+    icon={Clock}
+    iconColor="text-orange-500"
+    subtitle="2.5% from yesterday"
+  />
+  <MetricCard
+    title="Active Trains"
+    value="67"
+    icon={Train}
+    iconColor="text-green-500"
+    subtitle="2.5% from yesterday"
+  />
+  <MetricCard
+    title="Critical Delays"
+    value="2"
+    icon={AlertTriangle}
+    iconColor="text-red-500"
+    subtitle="2.5% from yesterday"
+  />
+</div>
+
 
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* <PassengerFlowChart /> */}
           <HourlyDelayChart />
           <PeakHoursChart />
+          <DelayDistributionChart />
         </div>
-
-        {/* Platform and Alerts */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <PlatformOccupancy />
-          </div>
-          <RealTimeAlerts />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* <PassengerFlowChart /> */}
+          <PlatformOccupancy />
+          <PitLineChart />
+          <BotsPlatformChart />
         </div>
-
         {/* Additional Charts Section */}
         {/* <Card>
           <CardHeader>
