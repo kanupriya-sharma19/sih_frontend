@@ -11,6 +11,7 @@ import { PlatformOccupancy } from "@/components/platform-occupancy"
 import { RealTimeAlerts } from "@/components/real-time-alerts"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react"
 import { RollingStockForm } from "@/components/rolling_stock_form"
 
@@ -40,33 +41,29 @@ export default function RailwayDashboard() {
 
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">
-        {/* Title, Add Train Button & Station Dropdown */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-          <div>
-            <h1 className="text-3xl font-bold">Section Controller Dashboard</h1>
-            <p className="text-muted-foreground">Monitor all stations in your section</p>
-          </div>
+       {/* Title, Add Train Button & Station Dropdown */}
+<div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+  <div>
+    <h1 className="text-3xl font-bold">Section Controller Dashboard</h1>
+    <p className="text-muted-foreground">Monitor all stations in your section</p>
+  </div>
 
-          {/* Right-side controls */}
-          <div className="flex items-center gap-4 ml-auto">
-            {/* Add Train Button + Rolling Stock Modal */}
-            <RollingStockForm />
-
-            {/* Station Selector Dropdown */}
-            <select
-              value={selectedStation}
-              onChange={(e) => setSelectedStation(e.target.value)}
-              className="border rounded px-4 py-2"
-            >
-              <option value="All Stations">All Stations</option>
-              <option value="CSMT">CSMT</option>
-              <option value="Dadar">Dadar</option>
-              <option value="Thane">Thane</option>
-              <option value="Santacruz">Santacruz</option>
-              <option value="Andheri">Andheri</option>
-            </select>
-          </div>
-        </div>
+  {/* Right-side controls */} <div className="flex items-center gap-4 ml-auto"> {/* Add Train Button + Rolling Stock Modal */} <RollingStockForm />
+    {/* Station Selector Dropdown */}
+    <select
+      value={selectedStation}
+      onChange={(e) => setSelectedStation(e.target.value)}
+      className="border rounded px-4 py-2"
+    >
+      <option value="All Stations">All Stations</option>
+      <option value="CSMT">CSMT</option>
+      <option value="Dadar">Dadar</option>
+      <option value="Thane">Thane</option>
+      <option value="Santacruz">Santacruz</option>
+      <option value="Andheri">Andheri</option>
+    </select>
+  </div>
+</div>
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
