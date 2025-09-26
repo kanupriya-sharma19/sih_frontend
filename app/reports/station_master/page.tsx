@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { RailwayAlert } from "@/components/railway_alert"
-import { RailwayHeader } from "@/components/railway-header"
-import { MetricCard } from "@/components/metric-card"
-import { PassengerFlowChart } from "@/components/passenger-flow-chart"
-import { HourlyDelayChart } from "@/components/hourly"
-import {PeakHoursChart} from "@/components/bagraph_rush"
-import { PlatformOccupancy } from "@/components/platform-occupancy"
-import { RealTimeAlerts } from "@/components/real-time-alerts"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react"
+import Image from "next/image";
+import { RailwayAlert } from "@/components/railway_alert";
+import { RailwayHeader } from "@/components/railway-header";
+import { MetricCard } from "@/components/metric-card";
+import { PassengerFlowChart } from "@/components/passenger-flow-chart";
+import { HourlyDelayChart } from "@/components/hourly";
+import { PeakHoursChart } from "@/components/bagraph_rush";
+import { PlatformOccupancy } from "@/components/platform-occupancy";
+import { RealTimeAlerts } from "@/components/real-time-alerts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
 
 export default function RailwayDashboard() {
   return (
@@ -42,8 +42,12 @@ export default function RailwayDashboard() {
         {/* Dashboard Title */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-balance">Passenger Impact Dashboard</h1>
-            <p className="text-muted-foreground">Real-time railway operations monitoring</p>
+            <h1 className="text-3xl font-bold text-balance">
+              Passenger Impact Dashboard
+            </h1>
+            <p className="text-muted-foreground">
+              Real-time railway operations monitoring
+            </p>
           </div>
           <Button className="bg-primary hover:bg-primary/90">CSMT</Button>
         </div>
@@ -57,17 +61,34 @@ export default function RailwayDashboard() {
             icon={Users}
             iconColor="text-blue-500"
           />
-          <MetricCard title="Average Section Delay" value="12.1 min" icon={Clock} iconColor="text-orange-500" />
-          <MetricCard title="Active Trains" value="67" icon={Train} iconColor="text-green-500" />
-          <MetricCard title="Critical Delays" value="2" icon={AlertTriangle} iconColor="text-red-500" />
-          <MetricCard title="Total Stations" value="10" icon={MapPin} iconColor="text-purple-500" />
+          <MetricCard
+            title="Average Section Delay"
+            value="12.1 min"
+            icon={Clock}
+            iconColor="text-orange-500"
+            subtitle="2.5% from yesterday"
+          />
+          <MetricCard
+            title="Active Trains"
+            value="67"
+            icon={Train}
+            iconColor="text-green-500"
+            subtitle="2.5% from yesterday"
+          />
+          <MetricCard
+            title="Critical Delays"
+            value="2"
+            icon={AlertTriangle}
+            iconColor="text-red-500"
+            subtitle="2.5% from yesterday"
+          />
         </div>
 
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* <PassengerFlowChart /> */}
           <HourlyDelayChart />
-          <PeakHoursChart/>
+          <PeakHoursChart />
         </div>
 
         {/* Platform and Alerts */}
@@ -106,5 +127,5 @@ export default function RailwayDashboard() {
         </Card> */}
       </main>
     </div>
-  )
+  );
 }
