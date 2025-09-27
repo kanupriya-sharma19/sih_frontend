@@ -83,9 +83,8 @@ export default function RailwayDashboard() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* <PassengerFlowChart /> */}
-          <PitLineChart />
-          <BotsPlatformChart />
         </div>
+          <PitLineChart />
         <PlatformOccupancy />
         {/* Additional Charts Section */}
         {/* <Card>

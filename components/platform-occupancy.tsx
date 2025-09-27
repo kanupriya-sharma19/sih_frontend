@@ -176,7 +176,7 @@ export function PlatformOccupancy() {
   }
 
   return (
-    <div className="bg-gray-100 text-gray-800 font-inter">
+    <div className="bg-white text-gray-800 font-inter">
       <div className="container mx-auto p-4 md:p-8">
         <header className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Railway Platform Occupancy</h1>
@@ -184,7 +184,7 @@ export function PlatformOccupancy() {
             Interactive Gantt chart showing train schedules on platforms over a 24-hour period.
           </p>
         </header>
-        <div className="bg-white rounded-lg shadow-lg p-4">
+        <div className="bg-transparent rounded-lg ">
           <HighchartsReact highcharts={Highcharts} constructorType="ganttChart" options={options} ref={chartComponentRef} />
         </div>
       </div>
