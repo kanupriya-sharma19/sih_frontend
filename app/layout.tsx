@@ -28,13 +28,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto.className}>
         {/* Google Translate Dropdown Container */}
-        <div id="google_translate_element" className="fixed top-4 right-4 z-50" />
+        <div
+  id="google_translate_element"
+  className="fixed bottom-5 right-5 z-50 bg-white rounded-full p-3 text-center flex items-center justify-center"
+  style={{ boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)' }}
+/>
+
+
 
         {children}
         <Analytics />
 
         {/* Google Translate Init Script */}
-        <Script id="google-translate-init" strategy="afterInteractive">
+        <Script id="google-translate-init" strategy="afterInteractive"  >
           {`
             function googleTranslateElementInit() {
               new google.translate.TranslateElement(
