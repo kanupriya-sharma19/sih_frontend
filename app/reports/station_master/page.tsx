@@ -18,6 +18,7 @@ import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 
 const alertsPage1: Alert[] = [
+<<<<<<< Updated upstream
   {
     message: "Power Outage",
     time: "8:00am",
@@ -31,6 +32,11 @@ const alertsPage1: Alert[] = [
     station: "CSMT",
   },
 ];
+=======
+  { message: "Power Outage", time: "8:00am", type: "danger", station: "Dadar" },
+  { message: "Signal Failure", time: "8:30am", type: "warning", station: "MMCT" },
+]
+>>>>>>> Stashed changes
 export default function RailwayDashboard() {
   return (
     <div className="min-h-screen bg-background">
@@ -48,7 +54,11 @@ export default function RailwayDashboard() {
               Real-time railway operations monitoring
             </p>
           </div>
+<<<<<<< Updated upstream
         {/* //  <Button className="bg-primary hover:bg-primary/90">CSMT</Button> */}
+=======
+          <Button className="bg-primary hover:bg-primary/90">MMCT</Button>
+>>>>>>> Stashed changes
         </div>
 
         {/* Key Metrics */}

@@ -21,13 +21,13 @@ const alertsPage1: Alert[] = [
     message: "Power Outage",
     time: "8:00am",
     type: "danger",
-    station: "Santacruz",
+    station: "Dadar",
   },
   {
     message: "Signal Failure",
     time: "8:30am",
     type: "warning",
-    station: "CSMT",
+    station: "MMCT",
   },
 ];
 
@@ -61,10 +61,10 @@ export default function RailwayDashboard() {
               className="border rounded px-4 py-2"
             >
               <option value="All Stations">All Stations</option>
-              <option value="CSMT">CSMT</option>
+              <option value=" MMCT">MMCT</option>
+              <option value=" Borivali"> Borivali</option>
+              <option value="Bandra">Bandra</option>
               <option value="Dadar">Dadar</option>
-              <option value="Thane">Thane</option>
-              <option value="Santacruz">Santacruz</option>
               <option value="Andheri">Andheri</option>
             </select>
           </div>

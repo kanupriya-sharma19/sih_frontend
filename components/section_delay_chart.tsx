@@ -18,28 +18,28 @@ interface SectionDelayChartProps {
 // Data for delays
 const data: Record<string, any[]> = {
   "All Stations": [
-    { station: "CSMT", delay: 12 },
-    { station: "Dadar", delay: 8 },
-    { station: "Thane", delay: 10 },
-    { station: "Santacruz", delay: 15 },
+    { station: "MMCT", delay: 12 },
+    { station: "Borivali", delay: 8 },
+    { station: "Bandra", delay: 10 },
+    { station: "Dadar", delay: 15 },
     { station: "Andheri", delay: 11 },
   ],
-  "CSMT": [
+  "MMCT": [
     { hour: "6 AM", delay: 12 },
     { hour: "9 AM", delay: 18 },
     { hour: "12 PM", delay: 10 },
   ],
-  "Dadar": [
+  "Borivali": [
     { hour: "6 AM", delay: 8 },
     { hour: "9 AM", delay: 12 },
     { hour: "12 PM", delay: 9 },
   ],
-  "Thane": [
+  "Bandra": [
     { hour: "6 AM", delay: 10 },
     { hour: "9 AM", delay: 14 },
     { hour: "12 PM", delay: 11 },
   ],
-  "Santacruz": [
+  "Dadar": [
     { hour: "6 AM", delay: 15 },
     { hour: "9 AM", delay: 20 },
     { hour: "12 PM", delay: 12 },

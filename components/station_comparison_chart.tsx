@@ -12,10 +12,10 @@ import {
 } from "recharts"
 
 const data = [
-  { station: "CSMT", delay: 12 },
-  { station: "Dadar", delay: 8 },
-  { station: "Thane", delay: 10 },
-  { station: "Santacruz", delay: 15 },
+  { station: "MMCT", delay: 12 },
+  { station: "Borivali", delay: 8 },
+  { station: "Bandra", delay: 10 },
+  { station: "Dadar", delay: 15 },
   { station: "Andheri", delay: 11 },
 ]
 
