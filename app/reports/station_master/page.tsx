@@ -56,34 +56,35 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Key Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  {/* Key Metrics */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
   <MetricCard
     title="Section Passengers"
     value="8432"
-    subtitle="2.5% from yesterday"
+    subtitle="3.2% more than yesterday"
     icon={Users}
     iconColor="text-blue-500"
   />
   <MetricCard
     title="Average Section Delay"
     value="12.1 min"
+    subtitle="1.8% less than yesterday"
     icon={Clock}
     iconColor="text-orange-500"
-    subtitle="2.5% from yesterday"
   />
   <MetricCard
     title="Active Trains"
     value="67"
+    subtitle="Same as yesterday"
     icon={Train}
     iconColor="text-green-500"
-    subtitle="2.5% from yesterday"
   />
   <MetricCard
     title="Critical Delays"
     value="2"
+    subtitle="Down 50% from yesterday"
     icon={AlertTriangle}
     iconColor="text-red-500"
-    subtitle="2.5% from yesterday"
   />
 </div>
 
