@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react"
 import { RollingStockForm } from "@/components/rolling_stock_form"
-
+import {TrainScheduleChart} from "@/components/section"
 export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations")
 
@@ -114,6 +114,7 @@ export default function RailwayDashboard() {
           <RealTimeAlerts />
         </div>
       </main>
+      <TrainScheduleChart/>
     </div>
   )
 }

@@ -1,18 +1,12 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
-import {
-  Area,
-  AreaChart,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-} from "recharts"
+} from "@/components/ui/chart";
+import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 const delayData = [
   { time: "06:00", delay: 3 },
@@ -23,7 +17,7 @@ const delayData = [
   { time: "16:00", delay: 5 },
   { time: "18:00", delay: 20 },
   { time: "20:00", delay: 8 },
-]
+];
 
 export function HourlyDelayChart() {
   return (
@@ -49,14 +43,14 @@ export function HourlyDelayChart() {
               <Area
                 type="monotone"
                 dataKey="delay"
-                stroke="var(--color-delay)"
-                fill="var(--color-delay)"
-                fillOpacity={0.3}
+                stroke="#3b82f6" // Blue-500
+                fill="#3b82f6"
+                fillOpacity={0.1} // Very light shade
               />
             </AreaChart>
           </ResponsiveContainer>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }
