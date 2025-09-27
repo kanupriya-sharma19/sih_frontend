@@ -1,286 +1,193 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  ResponsiveContainer,
-  BarChart,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Bar,
-  Rectangle,
-  RectangleProps,
-} from "recharts";
+import React, { useRef, useEffect, useState } from "react";
+import Highcharts from "highcharts/highcharts-gantt";
+import HighchartsReact, { HighchartsReactRefObject } from "highcharts-react-official";
 
 // Train type
-type Train = { start: number; end: number; type: string; color: string; value: number };
-
-// Platform data type
-type PlatformData = { platform: string; trains: Train[] };
-
-// Extended platform data with multiple platforms
-const platformData: PlatformData[] = [
-  {
-    platform: "Platform 1",
-    trains: [
-      { start: 4, end: 6, type: "Freight", color: "#86EFAC", value: 45000 },
-      { start: 8, end: 10, type: "Passenger", color: "#60A5FA", value: 72000 },
-      { start: 12, end: 14, type: "Express", color: "#FBBF24", value: 68000 },
-      { start: 16, end: 18, type: "Passenger", color: "#60A5FA", value: 89000 },
-      { start: 20, end: 22, type: "Freight", color: "#86EFAC", value: 38000 },
-    ],
-  },
-  {
-    platform: "Platform 2",
-    trains: [
-      { start: 5, end: 7, type: "Express", color: "#FBBF24", value: 55000 },
-      { start: 9, end: 11, type: "Passenger", color: "#60A5FA", value: 81000 },
-      { start: 13, end: 15, type: "Freight", color: "#86EFAC", value: 47000 },
-      { start: 17, end: 19, type: "Special", color: "#F87171", value: 92000 },
-      { start: 21, end: 23, type: "Passenger", color: "#60A5FA", value: 61000 },
-    ],
-  },
-  {
-    platform: "Platform 3",
-    trains: [
-      { start: 6, end: 8, type: "Passenger", color: "#60A5FA", value: 78000 },
-      { start: 10, end: 12, type: "Freight", color: "#86EFAC", value: 42000 },
-      { start: 14, end: 16, type: "Express", color: "#FBBF24", value: 85000 },
-      { start: 18, end: 20, type: "Special", color: "#F87171", value: 95000 },
-    ],
-  },
-  {
-    platform: "Platform 4",
-    trains: [
-      { start: 6, end: 8, type: "Passenger", color: "#60A5FA", value: 86223 },
-      { start: 6, end: 8, type: "Freight", color: "#86EFAC", value: 50647 },
-      { start: 14, end: 16, type: "Express", color: "#FACC15", value: 81449 },
-      { start: 20, end: 22, type: "Freight", color: "#86EFAC", value: 16697 },
-    ],
-  },
-  {
-    platform: "Platform 5",
-    trains: [
-      { start: 6, end: 8, type: "Express", color: "#FBBF24", value: 38056 },
-      { start: 6, end: 8, type: "Freight", color: "#86EFAC", value: 80636 },
-      { start: 14, end: 16, type: "Passenger", color: "#60A5FA", value: 96687 },
-      { start: 16, end: 18, type: "Freight", color: "#86EFAC", value: 43449 },
-    ],
-  },
-  {
-    platform: "Platform 6",
-    trains: [
-      { start: 7, end: 9, type: "Special", color: "#F87171", value: 72000 },
-      { start: 11, end: 13, type: "Passenger", color: "#60A5FA", value: 88000 },
-      { start: 15, end: 17, type: "Freight", color: "#86EFAC", value: 39000 },
-      { start: 19, end: 21, type: "Express", color: "#FBBF24", value: 67000 },
-    ],
-  },
-  {
-    platform: "Platform 7",
-    trains: [
-      { start: 4, end: 6, type: "Freight", color: "#86EFAC", value: 35000 },
-      { start: 8, end: 10, type: "Special", color: "#F87171", value: 91000 },
-      { start: 12, end: 14, type: "Passenger", color: "#60A5FA", value: 74000 },
-      { start: 16, end: 18, type: "Express", color: "#FBBF24", value: 82000 },
-      { start: 20, end: 22, type: "Passenger", color: "#60A5FA", value: 58000 },
-    ],
-  },
-  {
-    platform: "Platform 8",
-    trains: [
-      { start: 5, end: 7, type: "Passenger", color: "#60A5FA", value: 69000 },
-      { start: 9, end: 11, type: "Express", color: "#FBBF24", value: 76000 },
-      { start: 13, end: 15, type: "Special", color: "#F87171", value: 88000 },
-      { start: 17, end: 19, type: "Freight", color: "#86EFAC", value: 41000 },
-      { start: 21, end: 23, type: "Express", color: "#FBBF24", value: 72000 },
-    ],
-  },
-];
-
-// Props for the custom bar shape
-interface OccupancyBarShapeProps extends RectangleProps {
-  platform: string;
-  trains: Train[];
-  x?: number;
-  y?: number;
-  width?: number;
-  height?: number;
-}
-
-// Custom shape for multiple trains per platform
-function OccupancyBarShape({ x = 0, y = 0, width = 0, height = 0, trains }: OccupancyBarShapeProps) {
-  const trainCount = trains.length;
-
-  return (
-    <>
-      {trains.map((train, i) => {
-        const barX = x + ((train.start - 4) / 20) * width; // Adjusted for 4-24 hour range
-        const barWidth = ((train.end - train.start) / 20) * width;
-        const barHeight = Math.max(height / trainCount, 8); // Minimum height for visibility
-
-        return (
-          <Rectangle
-            key={i}
-            x={barX}
-            y={y + i * barHeight}
-            width={barWidth}
-            height={barHeight - 1}
-            fill={train.color}
-            stroke="#333"
-            strokeWidth={0.5}
-            rx={1}
-          />
-        );
-      })}
-    </>
-  );
-}
-
-// Custom tooltip props
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: { payload: PlatformData }[];
-}
-
-// Custom Tooltip component
-function CustomTooltip({ active, payload }: CustomTooltipProps) {
-  if (!active || !payload || !payload.length) return null;
-  
-  const platformData = payload[0].payload;
-  if (!platformData?.trains) return null;
-
-  return (
-    <div className="bg-white p-3 border border-gray-300 rounded-lg shadow-lg max-w-xs">
-      <p className="font-bold text-gray-800 mb-2 text-sm">{platformData.platform}</p>
-      <div className="space-y-1">
-        {platformData.trains.map((train: Train, i: number) => (
-          <div key={i} className="flex items-center gap-2 text-xs">
-            <div 
-              className="w-3 h-3 rounded-sm" 
-              style={{ backgroundColor: train.color }}
-            />
-            <span className="font-medium">{train.type}:</span>
-            <span>{train.start}:00 - {train.end}:00</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// Transform data for better visualization
-const transformedData = platformData.map(platform => ({
-  ...platform,
-  barValue: platform.trains.reduce((acc, train) => acc + train.value, 0) / platform.trains.length
-}));
-
-// Generate time labels for X-axis
-const timeLabels = Array.from({ length: 21 }, (_, i) => i + 4); // 4 to 24 hours
-const timeTicks = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
+type Train = { start?: number; end?: number; type?: string; color?: string; value?: number };
 
 // Main chart component
 export function PlatformOccupancy() {
+  const chartComponentRef = useRef<HighchartsReactRefObject>(null);
+  const [isModuleLoaded, setIsModuleLoaded] = useState(false);
+
+  // your data
+  const today = "2025-09-28";
+  const trainSchedule = [
+    // Platform 1
+    { platform: "Platform-1", train: "19218 VRL", day: "Sun", arrival: "04:55", departure: "05:10" },
+    { platform: "Platform-1", train: "12471 SWV", day: "Sun", arrival: "10:40", departure: "10:55" },
+    { platform: "Platform-1", train: "21902 BVC", day: "Sun", arrival: "17:40", departure: "17:55" },
+    { platform: "Platform-1", train: "19015 GKP", day: "Mon", arrival: "04:55", departure: "05:10" },
+    { platform: "Platform-1", train: "04126 BDTS", day: "Mon", arrival: "15:10", departure: "15:25" },
+    { platform: "Platform-1", train: "22195 VGLJ", day: "Tue", arrival: "04:55", departure: "05:10" },
+    { platform: "Platform-1", train: "22475 BKN", day: "Wed", arrival: "12:40", departure: "12:55" },
+    { platform: "Platform-1", train: "12901 ADI", day: "Wed", arrival: "18:00", departure: "18:20" },
+    { platform: "Platform-1", train: "22444 CNB", day: "Thu", arrival: "04:55", departure: "05:10" },
+    { platform: "Platform-1", train: "20901 LJN", day: "Sat", arrival: "10:10", departure: "10:25" },
+
+    // Platform 2
+    { platform: "Platform-2", train: "22954 SHUJ", day: "Sun", arrival: "04:55", departure: "05:05" },
+    { platform: "Platform-2", train: "20942 SGCT", day: "Sun", arrival: "21:30", departure: "21:45" },
+    { platform: "Platform-2", train: "14701 SDNR", day: "Mon", arrival: "05:15", departure: "05:30" },
+    { platform: "Platform-2", train: "89007 AII", day: "Mon", arrival: "08:15", departure: "08:30" },
+    { platform: "Platform-2", train: "12009 BCT", day: "Mon", arrival: "13:05", departure: "13:15" },
+    { platform: "Platform-2", train: "22934 JP", day: "Tue", arrival: "05:15", departure: "05:30" },
+    { platform: "Platform-2", train: "12957 NDLS", day: "Tue", arrival: "17:05", departure: "17:30" },
+    { platform: "Platform-2", train: "12926 ADI", day: "Wed", arrival: "05:15", departure: "05:30" },
+    { platform: "Platform-2", train: "12951 CSM", day: "Wed", arrival: "10:10", departure: "10:25" },
+    { platform: "Platform-2", train: "12932 BVI", day: "Fri", arrival: "04:55", departure: "05:05" },
+
+    // Platform 3
+    { platform: "Platform-3", train: "19016", day: "Sun", arrival: "05:10", departure: "05:20" },
+    { platform: "Platform-3", train: "12971 BVC", day: "Sun", arrival: "18:55", departure: "19:10" },
+    { platform: "Platform-3", train: "22928 ADI", day: "Mon", arrival: "06:05", departure: "06:20" },
+    { platform: "Platform-3", train: "12972 BVC", day: "Mon", arrival: "08:15", departure: "08:30" },
+    { platform: "Platform-3", train: "19217 VRL", day: "Mon", arrival: "12:40", departure: "13:00" },
+    { platform: "Platform-3", train: "22928 ADI", day: "Tue", arrival: "06:05", departure: "06:20" },
+    { platform: "Platform-3", train: "12971 BVC", day: "Tue", arrival: "18:55", departure: "19:10" },
+    { platform: "Platform-3", train: "19015 HSR", day: "Wed", arrival: "18:55", departure: "19:10" },
+    { platform: "Platform-3", train: "22930 VLLI", day: "Thu", arrival: "04:55", departure: "05:10" },
+    { platform: "Platform-3", train: "14701 SGN", day: "Thu", arrival: "08:15", departure: "08:30" },
+  ];
+
+  // compute categories
+  const categories = Array.from(new Set(trainSchedule.map((t) => `${t.platform} | ${t.day}`)));
+
+  // color map per platform
+  const colorMap: Record<string, string> = {
+    "Platform-1": "#BFDBFE",
+    "Platform-2": "#A7F3D0",
+    "Platform-3": "#FDE68A",
+  };
+
+  // compute day start/min & max (local midnight to next midnight - 1ms)
+  const dayStart = new Date(today);
+  dayStart.setHours(0, 0, 0, 0);
+  const minTime = dayStart.getTime();
+  const maxTime = minTime + 24 * 3600 * 1000 - 1;
+
+  // build tick positions (every hour, inclusive)
+  const tickPositions = Array.from({ length: 25 }, (_, i) => minTime + i * 3600 * 1000);
+
+  // tasks (with color)
+  const tasks = trainSchedule.map((train, i) => {
+    const start = new Date(`${today}T${train.arrival}:00`).getTime();
+    const end = new Date(`${today}T${train.departure}:00`).getTime();
+    const categoryLabel = `${train.platform} | ${train.day}`;
+    return {
+      id: `train-${i}`,
+      name: train.train,
+      start,
+      end,
+      y: categories.indexOf(categoryLabel),
+      custom: train,
+      color: colorMap[train.platform] || "#9E9E9E",
+    };
+  });
+
+  // Load gantt module client-side and then force axis extremes after mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    // load module safely on client
+    try {
+      // require here so it's executed only on client
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      require("highcharts/modules/gantt")(Highcharts);
+    } catch (e) {
+      // module may already be loaded — ignore
+    }
+    setIsModuleLoaded(true);
+
+    // After a short delay (next tick) force the axis extremes so Highcharts doesn't auto-extend
+    const t = setTimeout(() => {
+      const hcChart = (chartComponentRef.current as any)?.chart;
+      if (hcChart && hcChart.xAxis && hcChart.xAxis[0]) {
+        try {
+          hcChart.xAxis[0].setExtremes(minTime, maxTime, true, false);
+        } catch (err) {
+          // ignore if not ready yet
+        }
+      }
+    }, 50);
+
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const options: Highcharts.Options = {
+    chart: { type: "gantt", height: "100%" },
+    title: { text: "Railway Platform Occupancy" },
+
+    xAxis: {
+      type: "datetime",
+      tickInterval: 3600 * 1000,
+      min: minTime,
+      max: maxTime,
+      startOnTick: false,
+      endOnTick: false,
+      minPadding: 0,
+      maxPadding: 0,
+      tickPositions,
+      labels: { format: "{value:%H:%M}" },
+      title: { text: " " },
+    },
+
+    yAxis: {
+      type: "category",
+      categories,
+      title: { text: "Platform & Day" },
+    },
+
+    tooltip: {
+      pointFormatter: function () {
+        const t = (this as any).custom;
+        return `<b>Train:</b> ${t.train}<br/>
+                <b>Platform:</b> ${t.platform}<br/>
+                <b>Day:</b> ${t.day}<br/>
+                <b>Arrival:</b> ${t.arrival}<br/>
+                <b>Departure:</b> ${t.departure}`;
+      },
+    },
+
+    series: [
+      {
+        type: "gantt",
+        name: "Train Schedule",
+        data: tasks,
+        colorByPoint: true,
+      },
+    ],
+
+    plotOptions: {
+      series: {
+        dataLabels: {
+          enabled: true,
+          format: "{point.name}",
+        },
+      },
+    },
+  };
+
+  // Show the chart only after module loaded to avoid any SSR hiccups
+  if (!isModuleLoaded) {
+    return <div className="p-6 text-center">Loading chart...</div>;
+  }
+
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-xl font-bold">Platform Occupancy Dashboard - Railway Station</CardTitle>
-        <p className="text-sm text-gray-600">Showing occupancy for 8 platforms throughout the day</p>
-      </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={500}>
-          <BarChart
-            data={transformedData}
-            layout="vertical"
-            margin={{ top: 20, right: 30, left: 120, bottom: 40 }}
-            barSize={50}
-          >
-            <XAxis 
-              type="number" 
-              domain={[4, 24]}
-              ticks={timeTicks}
-              tickFormatter={(value) => `${value}:00`}
-              label={{ 
-                value: "Time (24-Hour Format)", 
-                position: "insideBottom", 
-                offset: -10,
-                style: { fontSize: 12, fontWeight: 'bold' }
-              }}
-            />
-            <YAxis 
-              type="category" 
-              dataKey="platform" 
-              width={100}
-              tick={{ fontSize: 12, fontWeight: 'bold' }}
-            />
-            <Tooltip content={<CustomTooltip />} />
-            <Bar
-              dataKey="barValue"
-              fill="transparent"
-              shape={(props: any) => (
-                <OccupancyBarShape 
-                  x={props.x} 
-                  y={props.y} 
-                  width={props.width} 
-                  height={props.height} 
-                  platform={props.payload.platform}
-                  trains={props.payload.trains}
-                />
-              )}
-            />
-            
-            {/* Add background grid for better time reference */}
-            {timeTicks.map((tick) => (
-              <line
-                key={tick}
-                x1={tick}
-                x2={tick}
-                y1={0}
-                y2="100%"
-                stroke="#e5e7eb"
-                strokeWidth={1}
-                strokeDasharray="3 3"
-              />
-            ))}
-          </BarChart>
-        </ResponsiveContainer>
-
-        {/* Legend */}
-        <div className="mt-6 flex gap-6 text-sm flex-wrap justify-center">
-          <span className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-sm bg-yellow-400" /> Express
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-sm bg-blue-400" /> Passenger
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-sm bg-green-400" /> Freight
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-sm bg-red-400" /> Special
-          </span>
+    <div className="bg-gray-100 text-gray-800 font-inter">
+      <div className="container mx-auto p-4 md:p-8">
+        <header className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Railway Platform Occupancy</h1>
+          <p className="text-md text-gray-600 mt-2">
+            Interactive Gantt chart showing train schedules on platforms over a 24-hour period.
+          </p>
+        </header>
+        <div className="bg-white rounded-lg shadow-lg p-4">
+          <HighchartsReact highcharts={Highcharts} constructorType="ganttChart" options={options} ref={chartComponentRef} />
         </div>
-
-        {/* Statistics */}
-        <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs text-gray-600">
-          <div className="bg-gray-50 p-2 rounded">
-            <div className="font-semibold">Total Platforms</div>
-            <div>{platformData.length}</div>
-          </div>
-          <div className="bg-gray-50 p-2 rounded">
-            <div className="font-semibold">Total Trains</div>
-            <div>{platformData.reduce((acc, platform) => acc + platform.trains.length, 0)}</div>
-          </div>
-          <div className="bg-gray-50 p-2 rounded">
-            <div className="font-semibold">Peak Hours</div>
-            <div>6:00-10:00, 16:00-20:00</div>
-          </div>
-          <div className="bg-gray-50 p-2 rounded">
-            <div className="font-semibold">Operating Hours</div>
-            <div>4:00-24:00</div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
