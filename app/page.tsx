@@ -4,21 +4,18 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { VideoLoader } from "@/components/loader" // import it
 
 export default function RailwayDashboard() {
   const router = useRouter()
   const [userId, setUserId] = useState("")
   const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [nextRoute, setNextRoute] = useState("")
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!userId) return alert("Enter User ID")
 
-    const firstDigit = userId[0]
+    const firstDigit = userId.trim()[0] // ensure no leading space
     let route = ""
 
     if (firstDigit === "1") route = "/reports/admin"
@@ -26,16 +23,11 @@ export default function RailwayDashboard() {
     else if (firstDigit === "3") route = "/reports/section_controller"
     else return alert("Invalid User ID")
 
-    setNextRoute(route)
-    setLoading(true) // show loader
-  }
-
-  const handleLoaderFinish = () => {
-    if (nextRoute) router.push(nextRoute)
+    router.push(route) // 🚀 directly redirect
   }
 
   return (
-     <div className="relative min-h-screen flex flex-col items-center justify-center p-6">
+    <div className="relative min-h-screen flex flex-col items-center justify-center p-6">
       {/* ✅ Background image with dark overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -43,10 +35,9 @@ export default function RailwayDashboard() {
       >
         <div className="absolute inset-0 z-0 bg-black/60" /> {/* overlay only on image */}
       </div>
-      <VideoLoader videoSrc="/images/loader.mp4" show={loading} onFinish={handleLoaderFinish} />
 
       {/* 🚂 Login Section */}
-      <div className="w-full max-w-3xl bg-black/70 backdrop-blur-sm rounded-lg shadow-lg flex flex-col items-center p-6">
+      <div className="w-full max-w-3xl bg-black/70 backdrop-blur-sm rounded-lg shadow-lg flex flex-col items-center p-6 relative z-10">
         <img
           src="/images/Rectangle 8.png"
           alt="Train"

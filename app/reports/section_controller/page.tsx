@@ -21,7 +21,7 @@ import { RailwayAlertCarousel, Alert } from "@/components/carousel"
 export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations")
   const alertsPage1: Alert[] = [
-  { message: "Power Outage", time: "8:00am", type: "danger", station: "Santacruz" },
+  { message: "Power Outage", time: "8:00am", type: "danger", station: "Dadar" },
   { message: "Signal Failure", time: "8:30am", type: "warning", station: "CSMT" },
 ]
 
@@ -30,30 +30,7 @@ export default function RailwayDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <RailwayHeader />
-<<<<<<< Updated upstream
-          <RailwayAlertCarousel alerts={alertsPage1} />
-    
- 
-=======
-
-      {/* Background alert section */}
-      <div className="relative h-52 w-full overflow-hidden">
-        <Image
-          src="/images/person 1.png"
-          alt="Control Panel"
-          fill
-          className="object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <RailwayAlert
-            message="Power Outage affecting Dadar Station"
-            time="8:00am"
-          />
-        </div>
-      </div>
->>>>>>> Stashed changes
-
+          <RailwayAlertCarousel alerts={alertsPage1}/>
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">
        {/* Title, Add Train Button & Station Dropdown */}
@@ -63,24 +40,6 @@ export default function RailwayDashboard() {
     <p className="text-muted-foreground">Monitor all stations in your section</p>
   </div>
 
-<<<<<<< Updated upstream
-  {/* Right-side controls */} <div className="flex items-center gap-4 ml-auto"> {/* Add Train Button + Rolling Stock Modal */} <RollingStockForm />
-    {/* Station Selector Dropdown */}
-    <select
-      value={selectedStation}
-      onChange={(e) => setSelectedStation(e.target.value)}
-      className="border rounded px-4 py-2"
-    >
-      <option value="All Stations">All Stations</option>
-      <option value="CSMT">CSMT</option>
-      <option value="Dadar">Dadar</option>
-      <option value="Thane">Thane</option>
-      <option value="Santacruz">Santacruz</option>
-      <option value="Andheri">Andheri</option>
-    </select>
-  </div>
-</div>
-=======
           {/* Right-side controls */}
           <div className="flex items-center gap-4 ml-auto">
             {/* Add Train Button + Rolling Stock Modal */}
@@ -101,7 +60,6 @@ export default function RailwayDashboard() {
             </select>
           </div>
         </div>
->>>>>>> Stashed changes
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
