@@ -1,10 +1,17 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Search } from "lucide-react"
-import Image from "next/image"
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function RailwayHeader() {
+  const router = useRouter();
+
+  const onLogout = () => {
+    router.push("/");
+  };
+
   return (
     <header className="w-full">
       {/* Top purple bar */}
@@ -44,8 +51,8 @@ export function RailwayHeader() {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <Image
-            src="/images/image.png"
-               alt="Emblem"
+              src="/images/image.png"
+              alt="Emblem"
               width={50}
               height={50}
             />
@@ -62,23 +69,24 @@ export function RailwayHeader() {
             <Button variant="ghost" size="sm">
               Station Performance
             </Button>
-            {/* <Button variant="ghost" size="sm">
-              Weather
-            </Button> */}
             <Button variant="ghost" size="sm">
               Delays
             </Button>
-                 <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm">
               Charts
             </Button>
           </nav>
 
-          {/* Search */}
-          <Button variant="ghost" size="icon">
-            <Search className="h-4 w-4" />
+          {/* Logout */}
+          <Button
+            onClick={onLogout}
+            className="bg-purple-700 hover:bg-purple-500 text-white px-4 py-2 rounded-md"
+          >
+            <LogOut className="h-4 w-4 mr-2" />
+            Logout
           </Button>
         </div>
       </div>
     </header>
-  )
+  );
 }

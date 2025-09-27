@@ -39,7 +39,7 @@ export default function RailwayDashboard() {
               Real-time railway operations monitoring
             </p>
           </div>
-          <Button className="bg-primary hover:bg-primary/90">MMCT</Button>
+          <Button className="bg-purple-700 hover:bg-purple-500">MMCT</Button>
         </div>
 
         {/* Key Metrics */}

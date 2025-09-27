@@ -31,7 +31,7 @@ const alertsPage1: Alert[] = [
   },
 ];
 
-export default function RailwayDashboard() {
+export  default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations");
 
   return (
@@ -58,11 +58,16 @@ export default function RailwayDashboard() {
             <select
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
-              className="border rounded px-4 py-2"
+              className="
+      border-2 border-purple-600 rounded-lg px-4 py-2
+      text-black font-medium
+      focus:outline-none focus:ring-2 focus:ring-purple-600
+      bg-white hover:bg-purple-50 transition
+    "
             >
               <option value="All Stations">All Stations</option>
-              <option value=" MMCT">MMCT</option>
-              <option value=" Borivali"> Borivali</option>
+              <option value="MMCT">MMCT</option>
+              <option value="Borivali">Borivali</option>
               <option value="Bandra">Bandra</option>
               <option value="Dadar">Dadar</option>
               <option value="Andheri">Andheri</option>
@@ -70,45 +75,44 @@ export default function RailwayDashboard() {
           </div>
         </div>
 
-     {/* Key Metrics */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-  <MetricCard
-    title="Section Passengers"
-    value="98,986"
-    subtitle="↑ 3.2% from yesterday"
-    icon={Users}
-    iconColor="text-blue-500"
-  />
-  <MetricCard
-    title="Avg Section Delay"
-    value="8.7 min"
-    subtitle="↓ 1.5 min vs last week"
-    icon={Clock}
-    iconColor="text-orange-500"
-  />
-  <MetricCard
-    title="Active Trains"
-    value="142"
-    subtitle="↑ 5 from yesterday"
-    icon={Train}
-    iconColor="text-green-500"
-  />
-  <MetricCard
-    title="Critical Delays"
-    value="4"
-    subtitle="2 more than average"
-    icon={AlertTriangle}
-    iconColor="text-red-500"
-  />
-  <MetricCard
-    title="Total Stations"
-    value="12"
-    subtitle="Fixed across network"
-    icon={MapPin}
-    iconColor="text-purple-500"
-  />
-</div>
-
+        {/* Key Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <MetricCard
+            title="Section Passengers"
+            value="98,986"
+            subtitle="↑ 3.2% from yesterday"
+            icon={Users}
+            iconColor="text-blue-500"
+          />
+          <MetricCard
+            title="Avg Section Delay"
+            value="8.7 min"
+            subtitle="↓ 1.5 min vs last week"
+            icon={Clock}
+            iconColor="text-orange-500"
+          />
+          <MetricCard
+            title="Active Trains"
+            value="142"
+            subtitle="↑ 5 from yesterday"
+            icon={Train}
+            iconColor="text-green-500"
+          />
+          <MetricCard
+            title="Critical Delays"
+            value="4"
+            subtitle="2 more than average"
+            icon={AlertTriangle}
+            iconColor="text-red-500"
+          />
+          <MetricCard
+            title="Total Stations"
+            value="12"
+            subtitle="Fixed across network"
+            icon={MapPin}
+            iconColor="text-purple-500"
+          />
+        </div>
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

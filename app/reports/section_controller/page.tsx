@@ -46,10 +46,15 @@ export default function RailwayDashboard() {
             <RollingStockForm />
 
             {/* Station Selector Dropdown */}
-            <select
+              <select
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
-              className="border rounded px-4 py-2"
+              className="
+      border-2 border-purple-600 rounded-lg px-4 py-2
+      text-black font-medium
+      focus:outline-none focus:ring-2 focus:ring-purple-600
+      bg-white hover:bg-purple-50 transition
+    "
             >
               <option value="All Stations">All Stations</option>
               <option value="MMCT">MMCT</option>

@@ -124,3 +124,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+.goog-te-gadget {
+  font-size: 0 !important; /* hides the default text */
+}
+
+.goog-te-gadget span {
+  display: none; /* hide 'Powered by' text */
+}
+
+.goog-te-combo {
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2563eb; /* Tailwind blue-600 */
+  color: white;
+  cursor: pointer;
+}
