@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
-import { Kanit } from "next/font/google"
+import { Roboto} from "next/font/google"
 
-const kanit = Kanit({
-  weight: "200",
+const roboto = Roboto({
+  weight: "400",
   subsets: ["latin"],
 })
 
@@ -11,9 +11,10 @@ import "./globals.css"
 import { PageTransitionWrapper } from "@/components/page_wrapper"
 
 export const metadata: Metadata = {
-  title: "v0 App",
+  title: "Drishti",
   description: "Created with v0",
   generator: "v0.app",
+  icons:'/images/image.png'
 }
 
 export default function RootLayout({
@@ -23,8 +24,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* ✅ Apply Kanit globally */}
-      <body className={kanit.className}>
+      {/* ✅ Apply roboto globally */}
+      <body className={roboto.className}>
         {children}
         <Analytics />
       </body>

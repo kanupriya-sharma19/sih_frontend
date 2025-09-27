@@ -47,7 +47,7 @@ export default function RailwayDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
             title="Section Passengers"
-            value="92,340"
+            value="36,340"
             subtitle="↑ 3.5% more than yesterday"
             icon={Users}
             iconColor="text-blue-500"
