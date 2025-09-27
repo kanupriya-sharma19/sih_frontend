@@ -35,18 +35,22 @@ export default function RailwayDashboard() {
   }
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center p-6"
-      style={{ backgroundImage: "url('/images/image 1.png')" }}
-    >
+     <div className="relative min-h-screen flex flex-col items-center justify-center p-6">
+      {/* ✅ Background image with dark overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/image 1.png')" }}
+      >
+        <div className="absolute inset-0 z-0 bg-black/60" /> {/* overlay only on image */}
+      </div>
       <VideoLoader videoSrc="/images/loader.mp4" show={loading} onFinish={handleLoaderFinish} />
 
       {/* 🚂 Login Section */}
-      <div className="w-full max-w-md bg-black/70 backdrop-blur-sm rounded-lg shadow-lg flex flex-col items-center p-6">
+      <div className="w-full max-w-3xl bg-black/70 backdrop-blur-sm rounded-lg shadow-lg flex flex-col items-center p-6">
         <img
           src="/images/Rectangle 8.png"
           alt="Train"
-          className="w-full h-40 object-cover rounded mb-4"
+          className="w-full h-50 object-cover rounded mb-4"
         />
 
         <form className="flex flex-col gap-4 w-full" onSubmit={handleLogin}>
@@ -71,7 +75,7 @@ export default function RailwayDashboard() {
       </div>
 
       {/* Quick Navigation */}
-      <div className="text-center mt-10">
+      <div className="text-center mt-10 z-10">
         <p className="text-white/70 mb-4">Quick Navigation</p>
         <div className="flex gap-4 justify-center">
           <Link href="/reports/section_controller">

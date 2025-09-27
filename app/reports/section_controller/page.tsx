@@ -15,29 +15,24 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react"
 import { RollingStockForm } from "@/components/rolling_stock_form"
 import {TrainScheduleChart} from "@/components/section"
+import { RailwayAlertCarousel, Alert } from "@/components/carousel"
+
+
 export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations")
+  const alertsPage1: Alert[] = [
+  { message: "Power Outage", time: "8:00am", type: "danger", station: "Santacruz" },
+  { message: "Signal Failure", time: "8:30am", type: "warning", station: "CSMT" },
+]
+
+
 
   return (
     <div className="min-h-screen bg-background">
       <RailwayHeader />
-
-      {/* Background alert section */}
-      <div className="relative h-52 w-full overflow-hidden">
-        <Image
-          src="/images/person 1.png"
-          alt="Control Panel"
-          fill
-          className="object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <RailwayAlert
-            message="Power Outage affecting Santacruz Station"
-            time="8:00am"
-          />
-        </div>
-      </div>
+          <RailwayAlertCarousel alerts={alertsPage1} />
+    
+ 
 
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">

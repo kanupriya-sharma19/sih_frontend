@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 
 export function RollingStockForm() {
   const [open, setOpen] = useState(false)
+  const chartTypes = ["Linear", "Bar", "Pie", "Scatter"];
+const [chartType, setChartType] = useState("Linear");
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -107,16 +109,51 @@ export function RollingStockForm() {
               Chart Configuration
             </h2>
             <div className="flex flex-wrap gap-6">
-              <label className="flex items-center gap-2 text-gray-700"><input type="checkbox" className="accent-purple-600" /> Passenger Chart</label>
-              <label className="flex items-center gap-2 text-gray-700"><input type="checkbox" className="accent-purple-600" /> Delay Chart</label>
-              <label className="flex items-center gap-2 text-gray-700"><input type="checkbox" className="accent-purple-600" /> Platform Occupancy</label>
+               <input type="text" placeholder="v" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+                <input type="text" placeholder="z" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+                {/* Chart Type Dropdown */}
+    <div>
+      <label className="block text-gray-700 font-medium mb-2">
+        Chart Type
+      </label>
+      <select
+        value={chartType}
+        onChange={(e) => setChartType(e.target.value)}
+        className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500"
+      >
+        {chartTypes.map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+    </div>
             </div>
           </div>
-
+          <div className="flex flex-row gap-20">
           {/* Submit Button */}
-          <Button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-3 rounded-xl shadow-md">
-            Save Rolling Stock
+          <Button type="submit" className=" bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-3 rounded-xl shadow-md">
+            Del Rolling Stock
           </Button>
+          <Button type="submit" className=" bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-3 rounded-xl shadow-md">
+            Add Rolling Stock
+          </Button>
+          </div>
+           <div className="flex flex-row gap-2">
+          {/* Submit Button */}
+          <Button type="submit" className=" bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm py-3 rounded-xl shadow-md">
+            Set Data
+          </Button>
+          <Button type="submit" className=" bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm py-3 rounded-xl shadow-md">
+            Save Depot
+          </Button>
+          <Button type="submit" className=" bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm py-3 rounded-xl shadow-md">
+            New Depot
+          </Button>
+          <Button type="submit" className=" bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm py-3 rounded-xl shadow-md">
+            Open Depot
+          </Button>
+          </div>
         </form>
       </DialogContent>
     </Dialog>
