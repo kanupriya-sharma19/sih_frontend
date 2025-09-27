@@ -20,7 +20,7 @@ import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 const alertsPage1: Alert[] = [
 
   { message: "Power Outage", time: "8:00am", type: "danger", station: "Dadar" },
-  { message: "Signal Failure", time: "8:30am", type: "warning", station: "MMCT" },
+  { message: "Signal Failure", time: "8:30am", type: "danger", station: "MMCT" },
 ]
 export default function RailwayDashboard() {
   return (

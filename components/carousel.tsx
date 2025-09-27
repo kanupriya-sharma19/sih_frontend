@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { RailwayAlert } from "@/components/railway_alert"
 
-type AlertType = "danger" | "warning" | "info"
+type AlertType = "danger" | "info"
 
 export type Alert = {
   message: string
@@ -15,13 +15,7 @@ export type Alert = {
 
 interface RailwayAlertCarouselProps {
   alerts: Alert[]
-  interval?: number 
-}
-
-const alertStyles: Record<AlertType, { bg: string; text: string }> = {
-  danger: { bg: "bg-red-600/90", text: "text-white" },
- warning: { bg: "bg-yellow-400/90", text: "text-black" },
-  info: { bg: "bg-blue-600/90", text: "text-white" },
+  interval?: number
 }
 
 export function RailwayAlertCarousel({ alerts, interval = 3000 }: RailwayAlertCarouselProps) {
@@ -38,7 +32,6 @@ export function RailwayAlertCarousel({ alerts, interval = 3000 }: RailwayAlertCa
   if (!alerts || alerts.length === 0) return null
 
   const currentAlert = alerts[currentIndex]
-  const { bg, text } = alertStyles[currentAlert.type]
 
   return (
     <div className="relative h-52 w-full overflow-hidden">
@@ -51,12 +44,11 @@ export function RailwayAlertCarousel({ alerts, interval = 3000 }: RailwayAlertCa
       <div className="absolute inset-0 bg-black/50" />
 
       <div className="absolute inset-0 flex items-center justify-center transition-all duration-500">
-        <div className={`px-6 py-3 rounded-lg ${bg} ${text} w-3/5 text-center`}>
-          <RailwayAlert
-            message={`${currentAlert.message} at ${currentAlert.station}`}
-            time={currentAlert.time}
-          />
-        </div>
+        {/* RailwayAlert directly without outer colored div */}
+        <RailwayAlert
+          message={`${currentAlert.message} at ${currentAlert.station}`}
+          time={currentAlert.time}
+        />
       </div>
     </div>
   )

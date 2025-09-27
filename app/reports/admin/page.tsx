@@ -26,7 +26,7 @@ const alertsPage1: Alert[] = [
   {
     message: "Signal Failure",
     time: "8:30am",
-    type: "warning",
+    type: "danger",
     station: "MMCT",
   },
 ];

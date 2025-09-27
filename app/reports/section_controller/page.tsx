@@ -22,7 +22,7 @@ export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations")
   const alertsPage1: Alert[] = [
   { message: "Power Outage", time: "8:00am", type: "danger", station: "Dadar" },
-  { message: "Signal Failure", time: "8:30am", type: "warning", station: "CSMT" },
+  { message: "Signal Failure", time: "8:30am", type: "danger", station: "CSMT" },
 ]
 
 
