@@ -15,7 +15,7 @@ export function RollingStockForm() {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-6 rounded-2xl shadow-xl">
+      <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
         {/* Sticky Header */}
         <DialogHeader className="sticky top-0 bg-gray-50 z-10 border-b border-gray-200 pb-3 mb-4">
           <DialogTitle className="text-2xl font-bold text-gray-900">Add Rolling Stock</DialogTitle>

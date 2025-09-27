@@ -16,9 +16,9 @@ export function EmployeeForm() {
       <h2 className="text-lg font-semibold text-gray-800 mb-4">
         Employee Details
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+      <div className="grid grid-cols-3 md:grid-cols-2 gap-4 text-gray-700">
         <p>
-          <span className="font-semibold">User ID:</span> EMP12345
+          <span className="font-semibold">Employee ID:</span> 200CST_101
         </p>
         <p>
           <span className="font-semibold">Station Code:</span> STN001
@@ -27,7 +27,7 @@ export function EmployeeForm() {
           <span className="font-semibold">Name:</span> Ajay Ganesh Khandagle
         </p>
         <p>
-          <span className="font-semibold">Designation:</span> Mill Wright Fitter
+          <span className="font-semibold">Designation:</span> Station Master
         </p>
         <p>
           <span className="font-semibold">Date of Birth:</span> 29/12/2009
