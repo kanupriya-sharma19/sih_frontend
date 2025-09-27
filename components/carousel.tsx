@@ -20,7 +20,7 @@ interface RailwayAlertCarouselProps {
 
 const alertStyles: Record<AlertType, { bg: string; text: string }> = {
   danger: { bg: "bg-red-600/90", text: "text-white" },
-  warning: { bg: "bg-yellow-400/90", text: "text-black" },
+ warning: { bg: "bg-yellow-400/90", text: "text-black" },
   info: { bg: "bg-blue-600/90", text: "text-white" },
 }
 

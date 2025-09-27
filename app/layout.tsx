@@ -19,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <PageTransitionWrapper>
           {children}
-        </PageTransitionWrapper>
         <Analytics />
       </body>
     </html>

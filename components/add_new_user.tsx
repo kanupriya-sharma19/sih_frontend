@@ -32,7 +32,7 @@ export function UserForm() {
 
       <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
         {/* DialogHeader contains the title and close button (X) */}
-        <DialogHeader className="sticky top-0 bg-gray-50 z-10 border-b border-gray-200 pb-3 mb-4">
+        <DialogHeader className="sticky top-0 bg-purple-50 z-10 border-b mt-2  border-purple-600 p-2 mb-4 w-full">
           <DialogTitle className="text-2xl font-bold text-gray-900">
             {showForm ? "Employee Details" : "Add New Employee"}
           </DialogTitle>

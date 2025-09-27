@@ -175,6 +175,10 @@ const transformedData = platformData.map(platform => ({
   barValue: platform.trains.reduce((acc, train) => acc + train.value, 0) / platform.trains.length
 }));
 
+// Generate time labels for X-axis
+const timeLabels = Array.from({ length: 21 }, (_, i) => i + 4); // 4 to 24 hours
+const timeTicks = [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24];
+
 // Main chart component
 export function PlatformOccupancy() {
   return (
@@ -188,14 +192,20 @@ export function PlatformOccupancy() {
           <BarChart
             data={transformedData}
             layout="vertical"
-            margin={{ top: 20, right: 30, left: 120, bottom: 30 }}
+            margin={{ top: 20, right: 30, left: 120, bottom: 40 }}
             barSize={50}
           >
             <XAxis 
               type="number" 
               domain={[4, 24]}
-              ticks={[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]}
-              label={{ value: "Time (24-Hour Format)", position: "insideBottom", offset: -5 }}
+              ticks={timeTicks}
+              tickFormatter={(value) => `${value}:00`}
+              label={{ 
+                value: "Time (24-Hour Format)", 
+                position: "insideBottom", 
+                offset: -10,
+                style: { fontSize: 12, fontWeight: 'bold' }
+              }}
             />
             <YAxis 
               type="category" 
@@ -218,6 +228,20 @@ export function PlatformOccupancy() {
                 />
               )}
             />
+            
+            {/* Add background grid for better time reference */}
+            {timeTicks.map((tick) => (
+              <line
+                key={tick}
+                x1={tick}
+                x2={tick}
+                y1={0}
+                y2="100%"
+                stroke="#e5e7eb"
+                strokeWidth={1}
+                strokeDasharray="3 3"
+              />
+            ))}
           </BarChart>
         </ResponsiveContainer>
 
@@ -260,65 +284,3 @@ export function PlatformOccupancy() {
     </Card>
   );
 }
-// "use client"
-
-// import Plot from "react-plotly.js"
-// import { Data } from "plotly.js"
-
-// const platforms = ["Platform 1", "Platform 2", "Platform 3", "Platform 4", "Platform 5"]
-
-// export function PlatformOccupancy() {
-//   // Sample data
-//   const data: Data[] = [
-//     {
-//       type: "bar",
-//       orientation: "h",
-//       x: [2], // duration
-//       y: ["Platform 1"],
-//       marker: { color: "#FFD700" }, // Express (yellow)
-//       name: "Train 12345",
-//       hoverinfo: "text",
-//       text: ["Train 12345<br>06:00 - 08:00<br>Express<br>Status: On Time"], // must be an array
-//     },
-//     {
-//       type: "bar",
-//       orientation: "h",
-//       x: [2],
-//       y: ["Platform 2"],
-//       marker: { color: "#87CEEB" }, // Passenger (blue)
-//       name: "Train 54321",
-//       hoverinfo: "text",
-//       text: ["Train 54321<br>08:30 - 10:30<br>Passenger<br>Status: Delayed 12m"],
-//     },
-//   ]
-
-//   const layout = {
-//     title: "🚉 Platform Occupancy Dashboard",
-//     barmode: "stack",
-//     xaxis: {
-//       title: "Time (hrs)",
-//       range: [5, 23],
-//       tickvals: [6, 8, 10, 12, 14, 16, 18, 20, 22],
-//       ticktext: ["06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00"],
-//     },
-//     yaxis: {
-//       title: "Platforms",
-//       tickvals: platforms,
-//     },
-//     height: 600,
-//     showlegend: false,
-//     plot_bgcolor: "white",
-//     paper_bgcolor: "#fafafa",
-//   }
-
-//   return (
-//     <div className="w-full overflow-x-auto">
-//       <Plot
-//         data={data}
-//         layout={layout}
-//         config={{ responsive: true, displayModeBar: false }}
-//         style={{ width: "100%", height: "100%" }}
-//       />
-//     </div>
-//   )
-// }

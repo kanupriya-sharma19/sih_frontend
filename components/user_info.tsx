@@ -18,10 +18,10 @@ export function EmployeeForm() {
       </h2>
       <div className="grid grid-cols-3 md:grid-cols-2 gap-4 text-gray-700">
         <p>
-          <span className="font-semibold">Employee ID:</span> 200CST_101
+          <span className="font-semibold">Employee ID:</span> 232CSMT_183
         </p>
         <p>
-          <span className="font-semibold">Station Code:</span> STN001
+          <span className="font-semibold">Station Code:</span> CSMT
         </p>
         <p>
           <span className="font-semibold">Name:</span> Ajay Ganesh Khandagle

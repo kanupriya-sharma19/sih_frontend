@@ -11,7 +11,7 @@ export function RailwayHeader() {
       <div className="bg-[#6C4EFF] text-white text-sm">
         <div className="container mx-auto flex items-center justify-between px-4 h-8">
           <div className="flex items-center space-x-2">
-            <span>Government of India</span>
+            <span>Government of Railways</span>
           </div>
           <div className="flex items-center space-x-4">
             <a href="#" className="hover:underline">
@@ -62,9 +62,9 @@ export function RailwayHeader() {
             <Button variant="ghost" size="sm">
               Station Performance
             </Button>
-            <Button variant="ghost" size="sm">
+            {/* <Button variant="ghost" size="sm">
               Weather
-            </Button>
+            </Button> */}
             <Button variant="ghost" size="sm">
               Delays
             </Button>

@@ -15,12 +15,22 @@ import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
-import { RailwayAlertCarousel, Alert } from "@/components/carousel"
+import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 
 const alertsPage1: Alert[] = [
-  { message: "Power Outage", time: "8:00am", type: "danger", station: "Santacruz" },
-  { message: "Signal Failure", time: "8:30am", type: "warning", station: "CSMT" },
-]
+  {
+    message: "Power Outage",
+    time: "8:00am",
+    type: "danger",
+    station: "Santacruz",
+  },
+  {
+    message: "Signal Failure",
+    time: "8:30am",
+    type: "warning",
+    station: "CSMT",
+  },
+];
 export default function RailwayDashboard() {
   return (
     <div className="min-h-screen bg-background">
@@ -32,13 +42,13 @@ export default function RailwayDashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-balance">
-              Passenger Impact Dashboard
+              CSMT Passenger Impact Dashboard
             </h1>
             <p className="text-muted-foreground">
               Real-time railway operations monitoring
             </p>
           </div>
-          <Button className="bg-primary hover:bg-primary/90">CSMT</Button>
+        {/* //  <Button className="bg-primary hover:bg-primary/90">CSMT</Button> */}
         </div>
 
         {/* Key Metrics */}
@@ -46,34 +56,33 @@ export default function RailwayDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
             title="Section Passengers"
-            value="8432"
-            subtitle="3.2% more than yesterday"
+            value="92,340"
+            subtitle="↑ 3.5% more than yesterday"
             icon={Users}
             iconColor="text-blue-500"
           />
           <MetricCard
             title="Average Section Delay"
-            value="12.1 min"
-            subtitle="1.8% less than yesterday"
+            value="7.8 min"
+            subtitle="↓ 1.2% less than yesterday"
             icon={Clock}
             iconColor="text-orange-500"
           />
           <MetricCard
             title="Active Trains"
-            value="67"
-            subtitle="Same as yesterday"
+            value="1,084"
+            subtitle="↑ 15 trains from yesterday"
             icon={Train}
             iconColor="text-green-500"
           />
           <MetricCard
             title="Critical Delays"
-            value="2"
-            subtitle="Down 50% from yesterday"
+            value="4"
+            subtitle="2 fewer than yesterday"
             icon={AlertTriangle}
             iconColor="text-red-500"
           />
         </div>
-
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* <PassengerFlowChart /> */}

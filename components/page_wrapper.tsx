@@ -24,6 +24,7 @@ export function PageTransitionWrapper({ children }: { children: React.ReactNode 
         videoSrc="/images/loader.mp4"
         show={loading}
         onFinish={handleLoaderFinish}
+        speed={6}
       />
       <div className={`${loading ? "pointer-events-none opacity-50" : ""}`}>{children}</div>
     </>
