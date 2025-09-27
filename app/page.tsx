@@ -4,11 +4,14 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { VideoLoader } from "@/components/loader" // import it
 
 export default function RailwayDashboard() {
   const router = useRouter()
   const [userId, setUserId] = useState("")
   const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [nextRoute, setNextRoute] = useState("")
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
@@ -16,16 +19,19 @@ export default function RailwayDashboard() {
     if (!userId) return alert("Enter User ID")
 
     const firstDigit = userId[0]
+    let route = ""
 
-    if (firstDigit === "1") {
-      router.push("/reports/admin")
-    } else if (firstDigit === "2") {
-      router.push("/reports/station_master")
-    } else if (firstDigit === "3") {
-      router.push("/reports/section_controller")
-    } else {
-      alert("Invalid User ID")
-    }
+    if (firstDigit === "1") route = "/reports/admin"
+    else if (firstDigit === "2") route = "/reports/station_master"
+    else if (firstDigit === "3") route = "/reports/section_controller"
+    else return alert("Invalid User ID")
+
+    setNextRoute(route)
+    setLoading(true) // show loader
+  }
+
+  const handleLoaderFinish = () => {
+    if (nextRoute) router.push(nextRoute)
   }
 
   return (
@@ -33,7 +39,9 @@ export default function RailwayDashboard() {
       className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center p-6"
       style={{ backgroundImage: "url('/images/image 1.png')" }}
     >
-      {/* 🚂 Centered Login Section */}
+      <VideoLoader videoSrc="/images/loader.mp4" show={loading} onFinish={handleLoaderFinish} />
+
+      {/* 🚂 Login Section */}
       <div className="w-full max-w-md bg-black/70 backdrop-blur-sm rounded-lg shadow-lg flex flex-col items-center p-6">
         <img
           src="/images/Rectangle 8.png"
@@ -62,10 +70,9 @@ export default function RailwayDashboard() {
         </form>
       </div>
 
-      {/* 📊 Quick Navigation Section */}
+      {/* Quick Navigation */}
       <div className="text-center mt-10">
         <p className="text-white/70 mb-4">Quick Navigation</p>
-
         <div className="flex gap-4 justify-center">
           <Link href="/reports/section_controller">
             <Button>Section Controller</Button>

@@ -15,31 +15,17 @@ import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
+import { RailwayAlertCarousel, Alert } from "@/components/carousel"
 
+const alertsPage1: Alert[] = [
+  { message: "Power Outage", time: "8:00am", type: "danger", station: "Santacruz" },
+  { message: "Signal Failure", time: "8:30am", type: "warning", station: "CSMT" },
+]
 export default function RailwayDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <RailwayHeader />
-
-      {/* Background alert section */}
-      <div className="relative h-52 w-full overflow-hidden">
-        <Image
-          src="/images/person 1.png" // place image inside /public
-          alt="Control Panel"
-          fill
-          className="object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-
-        {/* Centered Alert */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <RailwayAlert
-            message="Power Outage affecting Santacruz Station"
-            time="8:00am"
-          />
-        </div>
-      </div>
-
+      <RailwayAlertCarousel alerts={alertsPage1} />
       {/* Main Dashboard Section */}
       <main className="container mx-auto px-4 py-6 space-y-6">
         {/* Dashboard Title */}
@@ -56,38 +42,37 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Key Metrics */}
-  {/* Key Metrics */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-  <MetricCard
-    title="Section Passengers"
-    value="8432"
-    subtitle="3.2% more than yesterday"
-    icon={Users}
-    iconColor="text-blue-500"
-  />
-  <MetricCard
-    title="Average Section Delay"
-    value="12.1 min"
-    subtitle="1.8% less than yesterday"
-    icon={Clock}
-    iconColor="text-orange-500"
-  />
-  <MetricCard
-    title="Active Trains"
-    value="67"
-    subtitle="Same as yesterday"
-    icon={Train}
-    iconColor="text-green-500"
-  />
-  <MetricCard
-    title="Critical Delays"
-    value="2"
-    subtitle="Down 50% from yesterday"
-    icon={AlertTriangle}
-    iconColor="text-red-500"
-  />
-</div>
-
+        {/* Key Metrics */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <MetricCard
+            title="Section Passengers"
+            value="8432"
+            subtitle="3.2% more than yesterday"
+            icon={Users}
+            iconColor="text-blue-500"
+          />
+          <MetricCard
+            title="Average Section Delay"
+            value="12.1 min"
+            subtitle="1.8% less than yesterday"
+            icon={Clock}
+            iconColor="text-orange-500"
+          />
+          <MetricCard
+            title="Active Trains"
+            value="67"
+            subtitle="Same as yesterday"
+            icon={Train}
+            iconColor="text-green-500"
+          />
+          <MetricCard
+            title="Critical Delays"
+            value="2"
+            subtitle="Down 50% from yesterday"
+            icon={AlertTriangle}
+            iconColor="text-red-500"
+          />
+        </div>
 
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -101,7 +86,7 @@ export default function RailwayDashboard() {
           <PitLineChart />
           <BotsPlatformChart />
         </div>
-        <PlatformOccupancy/>
+        <PlatformOccupancy />
         {/* Additional Charts Section */}
         {/* <Card>
           <CardHeader>

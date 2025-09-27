@@ -1,56 +1,58 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { useState } from "react"
-import {  TrainScheduleChart} from "@/components/section"
-import { RailwayHeader } from "@/components/railway-header"
-import { RailwayAlert } from "@/components/railway_alert"
-import { MetricCard } from "@/components/metric-card"
-import { SectionPassengerChart } from "@/components/section_passenger_chart"
-import { SectionDelayChart } from "@/components/section_delay_chart"
-import { PlatformOccupancy } from "@/components/platform-occupancy"
-import { RealTimeAlerts } from "@/components/real-time-alerts"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react"
-import {  UserForm } from "@/components/add_new_user"
+import Image from "next/image";
+import { useState } from "react";
+import { TrainScheduleChart } from "@/components/section";
+import { RailwayHeader } from "@/components/railway-header";
+import { RailwayAlert } from "@/components/railway_alert";
+import { MetricCard } from "@/components/metric-card";
+import { SectionPassengerChart } from "@/components/section_passenger_chart";
+import { SectionDelayChart } from "@/components/section_delay_chart";
+import { PlatformOccupancy } from "@/components/platform-occupancy";
+import { RealTimeAlerts } from "@/components/real-time-alerts";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
+import { UserForm } from "@/components/add_new_user";
+import { RailwayAlertCarousel, Alert } from "@/components/carousel";
+
+const alertsPage1: Alert[] = [
+  {
+    message: "Power Outage",
+    time: "8:00am",
+    type: "danger",
+    station: "Santacruz",
+  },
+  {
+    message: "Signal Failure",
+    time: "8:30am",
+    type: "warning",
+    station: "CSMT",
+  },
+];
+
 export default function RailwayDashboard() {
-  const [selectedStation, setSelectedStation] = useState("All Stations")
+  const [selectedStation, setSelectedStation] = useState("All Stations");
 
   return (
     <div className="min-h-screen bg-background">
       <RailwayHeader />
-
-      {/* Background alert section */}
-      <div className="relative h-52 w-full overflow-hidden">
-        <Image
-          src="/images/person 1.png"
-          alt="Control Panel"
-          fill
-          className="object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <RailwayAlert
-            message="Power Outage affecting Santacruz Station"
-            time="8:00am"
-          />
-        </div>
-      </div>
-
+      <RailwayAlertCarousel alerts={alertsPage1} />
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">
         {/* Title, Add Train Button & Station Dropdown */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
           <div>
             <h1 className="text-3xl font-bold">Admin</h1>
-            <p className="text-muted-foreground">Monitor all stations in your section</p>
+            <p className="text-muted-foreground">
+              Monitor all stations in your section
+            </p>
           </div>
 
           {/* Right-side controls */}
           <div className="flex items-center gap-4 ml-auto">
             {/* Add Train Button + Rolling Stock Modal */}
-            < UserForm />
+            <UserForm />
 
             {/* Station Selector Dropdown */}
             <select
@@ -117,7 +119,7 @@ export default function RailwayDashboard() {
           <RealTimeAlerts />
         </div>
       </main>
-        <TrainScheduleChart/>
+      <TrainScheduleChart />
     </div>
-  )
+  );
 }
