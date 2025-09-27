@@ -16,6 +16,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
+import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
 
 const alertsPage1: Alert[] = [
 
@@ -84,8 +85,12 @@ export default function RailwayDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* <PassengerFlowChart /> */}
         </div>
+<<<<<<< Updated upstream
           <PitLineChart />
         <PlatformOccupancy />
+=======
+        <PlatformOccupancyChart />
+>>>>>>> Stashed changes
         {/* Additional Charts Section */}
         {/* <Card>
           <CardHeader>
