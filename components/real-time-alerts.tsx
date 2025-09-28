@@ -37,7 +37,7 @@ export function RealTimeAlerts({ alerts }: RealTimeAlertsProps) {
             {alert.type === "success" && <CheckCircle className="h-4 w-4 text-green-500" />}
             <AlertDescription>
               <div className="flex justify-between items-start">
-                <span>{alert.message}</span>
+                <span className="text-black">{alert.message}</span>
                 <span className="text-xs text-muted-foreground ml-2">{alert.time}</span>
               </div>
             </AlertDescription>

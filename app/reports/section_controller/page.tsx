@@ -82,6 +82,7 @@ export default function RailwayDashboard() {
             {/* Add Train Button + Rolling Stock Modal */}
             <RollingStockForm />
             <select
+            suppressHydrationWarning
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
               className="

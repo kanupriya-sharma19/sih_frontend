@@ -13,6 +13,7 @@ const [chartType, setChartType] = useState("Linear");
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
    <button
+   suppressHydrationWarning
       className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
     >
       + Add New Rolling Stock
@@ -68,9 +69,9 @@ const [chartType, setChartType] = useState("Linear");
                 Electrical Systems
               </h2>
               <div className="flex gap-2">
-                <Button type="button" className="bg-purple-400 hover:bg-purple-600 text-white px-3 py-1 rounded-md text-sm">Add</Button>
-                <Button type="button" className="bg-purple-400 hover:bg-purple-600 text-white px-3 py-1 rounded-md text-sm">Dupl</Button>
-                <Button type="button" className="bg-purple-400 hover:bg-purple-600 text-white px-3 py-1 rounded-md text-sm">Del</Button>
+                <Button  suppressHydrationWarning type="button" className="bg-purple-400 hover:bg-purple-600 text-white px-3 py-1 rounded-md text-sm">Add</Button>
+                <Button  suppressHydrationWarning type="button" className="bg-purple-400 hover:bg-purple-600 text-white px-3 py-1 rounded-md text-sm">Dupl</Button>
+                <Button  suppressHydrationWarning type="button" className="bg-purple-400 hover:bg-purple-600 text-white px-3 py-1 rounded-md text-sm">Del</Button>
               </div>
             </div>
 

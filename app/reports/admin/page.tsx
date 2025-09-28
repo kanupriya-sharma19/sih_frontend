@@ -11,7 +11,7 @@ import {
   Activity,
 } from "lucide-react";
 import { useState } from "react";
-
+import {TrainChart} from "@/components/new";
 import { TrainScheduleChart } from "@/components/section";
 import { RailwayHeader } from "@/components/railway-header";
 import { MetricCard } from "@/components/metric-card";
@@ -90,6 +90,7 @@ export default function RailwayDashboard() {
           <div className="flex items-center gap-4 ml-auto">
             <UserForm />
             <select
+            suppressHydrationWarning
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
               className="
@@ -215,6 +216,7 @@ export default function RailwayDashboard() {
 
         {/* Train Schedule */}
         <TrainScheduleChart />
+        <TrainChart/>
       </main>
     </div>
   );

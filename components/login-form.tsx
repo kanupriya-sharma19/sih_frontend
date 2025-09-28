@@ -50,7 +50,9 @@ export function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
         className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white"
       />
-      <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+      <Button 
+      suppressHydrationWarning
+      type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
         Login
       </Button>
     </form>

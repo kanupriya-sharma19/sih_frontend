@@ -128,6 +128,7 @@ export function ChatBot() {
             <div className="grid grid-cols-2 gap-2">
               {defaultPrompts.map((prompt, i) => (
                 <button
+                suppressHydrationWarning
                   key={i}
                   onClick={() => handleSend(prompt)}
                   className="text-xs bg-purple-100 hover:bg-purple-200 text-purple-700 px-3 py-2 rounded-lg transition text-left border border-purple-200 hover:border-purple-300"
@@ -151,6 +152,7 @@ export function ChatBot() {
               placeholder="Type your message..."
             />
             <button
+            suppressHydrationWarning
               onClick={() => handleSend()}
               className="bg-purple-600 hover:bg-purple-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition shadow-lg hover:shadow-xl"
             >

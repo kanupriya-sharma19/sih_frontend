@@ -58,7 +58,7 @@ export function RailwayAlertCarousel({
         <RailwayAlert
           message={`${currentAlert.message} at ${currentAlert.station}`}
           time={currentAlert.time}
-          type={currentAlert.type} // ✅ Only pass the type string
+          type={currentAlert.type} 
         />
       </div>
     </div>
