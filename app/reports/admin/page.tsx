@@ -166,7 +166,8 @@ export default function RailwayDashboard() {
           />
 
           {/* Bottom row cards */}
-          <div className="col-span-full grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
+          <div className="col-span-full flex justify-center gap-4">
+            <div className="w-full md:w-1/2 lg:w-1/4">
             <MetricCard
               title="Track Utilization"
               value="87%"
@@ -178,6 +179,8 @@ export default function RailwayDashboard() {
               icon={Activity}
               iconColor="text-teal-500"
             />
+            </div>
+            <div className="w-full md:w-1/2 lg:w-1/4">
             <MetricCard
               title="Throughput"
               value="210 million ton-km"
@@ -189,6 +192,8 @@ export default function RailwayDashboard() {
               icon={TrendingUp}
               iconColor="text-indigo-500"
             />
+            </div>
+            <div className="w-full md:w-1/2 lg:w-1/4">
             <MetricCard
               title="Incidents Reported"
               value="9"
@@ -200,6 +205,7 @@ export default function RailwayDashboard() {
               icon={AlertTriangle}
               iconColor="text-rose-500"
             />
+            </div>
           </div>
         </div>
 
