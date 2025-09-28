@@ -33,7 +33,7 @@ import { TrainScheduleChart } from "@/components/section";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { ChatBot } from "@/components/chat";
 import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
-import { TrainChart } from "@/components/TrainChart"; 
+import { TrainChart } from "@/components/TrainChart";
 
 export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations");
@@ -198,16 +198,10 @@ export default function RailwayDashboard() {
           <SectionPassengerChart selectedStation={selectedStation} />
           <SectionDelayChart selectedStation={selectedStation} />
         </div>
-
         {/* Platform Occupancy + Alerts */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <PlatformOccupancyChart/>
-
-          </div>
-          <RealTimeAlerts />
-        </div>
+        <PlatformOccupancyChart />
       </main>
+      <RealTimeAlerts />
       <TrainScheduleChart />
     </div>
   );

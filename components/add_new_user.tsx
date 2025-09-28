@@ -25,11 +25,12 @@ export function UserForm() {
   return (
  <Dialog open={open} onOpenChange={setOpen}>
   <DialogTrigger asChild>
-    <button
-      className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
-    >
-      + Add New Employee
-    </button>
+    <Button 
+    suppressHydrationWarning
+    className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md flex items-center justify-center">
+  + Add New Employee
+</Button>
+
   </DialogTrigger>
 
   <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
@@ -48,7 +49,7 @@ export function UserForm() {
           <div className="flex justify-center">
             <input
               type="text"
-              placeholder="Employee Id (200xxx_yyy)"
+              placeholder="Employee Id (2xxxxxxx)"
               maxLength={10}
               className="w-full max-w-xs border border-gray-300 rounded-lg p-3 bg-white focus:ring-2 focus:ring-purple-500"
             />

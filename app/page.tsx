@@ -4,7 +4,6 @@ import { LoginForm } from "@/components/login-form"
 export default function RailwayDashboard() {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center p-6">
-      {/* ✅ Background image with dark overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url('/images/image 1.png')" }}
@@ -20,7 +19,7 @@ export default function RailwayDashboard() {
           className="w-full h-50 object-cover rounded mb-4"
         />
 
-        <LoginForm />
+      <LoginForm />
       </div>
 
       {/* Quick Navigation

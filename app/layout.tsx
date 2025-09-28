@@ -27,10 +27,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={roboto.className}>
         {/* Google Translate Dropdown Container */}
-        <div
-          id="google_translate_element"
-          className="fixed top-5 right-5 z-50"
-        />
+          <div
+  id="google_translate_element"
+  className="fixed top-5 right-1 z-50 bg-white rounded-full p-3 text-center flex items-center justify-center"
+  style={{ boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)' }}
+/>
 
         {children}
         <Analytics />

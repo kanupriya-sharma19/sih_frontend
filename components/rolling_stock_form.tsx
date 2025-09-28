@@ -15,7 +15,7 @@ const [chartType, setChartType] = useState("Linear");
    <button
       className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
     >
-      + Add New Rlling Stock
+      + Add New Rolling Stock
     </button>
 
       </DialogTrigger>

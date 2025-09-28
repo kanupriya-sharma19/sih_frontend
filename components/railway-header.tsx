@@ -39,6 +39,7 @@ export function RailwayHeader() {
                   key={label}
                   variant="ghost"
                   size="sm"
+                  suppressHydrationWarning
                   className="h-6 px-2 text-xs bg-transparent hover:bg-white/20 text-white"
                 >
                   {label}
@@ -51,6 +52,7 @@ export function RailwayHeader() {
                 key={label}
                 variant="ghost"
                 size="sm"
+                suppressHydrationWarning
                 className="h-6 px-2 text-xs bg-transparent hover:bg-white/20 text-white"
               >
                 {label}
@@ -73,31 +75,32 @@ export function RailwayHeader() {
             />
           </div>
 
-          {/* Nav links + Logout */}
-          <div className="flex items-center flex-1 ml-6">
+          {/* Nav links centered */}
+          <div className="flex-1 flex justify-center">
             <nav className="flex items-center space-x-4">
               {navLinks.map((link) => (
                 <Button
                   key={link.label}
                   variant="ghost"
-                  className="px-4 py-2 text-black font-medium hover:bg-purple-50"
+                  suppressHydrationWarning
+                  className="text-black hover:bg-gray-300 px-3 py-2 rounded-md text-sm font-bold"
                 >
                   {link.label}
                 </Button>
               ))}
             </nav>
+          </div>
 
-            {/* Push logout to right */}
-            <div className="ml-auto">
-              <button
-                onClick={onLogout}
-                className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
-                type="button"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </button>
-            </div>
+          {/* Logout aligned right */}
+          <div>
+            <button
+              onClick={onLogout}
+              className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
+              type="button"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </button>
           </div>
         </div>
       </div>

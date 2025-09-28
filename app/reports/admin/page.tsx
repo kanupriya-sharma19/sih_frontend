@@ -193,14 +193,12 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Platform Occupancy + Alerts */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
             <PlatformOccupancyChart />
-          </div>
-          <RealTimeAlerts />
-        </div>
+        
+          <RealTimeAlerts /> 
       </main>
-      
+            <TrainScheduleChart />
+
     </div>
   );
 }
