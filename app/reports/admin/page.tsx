@@ -222,7 +222,6 @@ export default function RailwayDashboard() {
 
         {/* Train Schedule */}
         <TrainScheduleChart />
-        <TrainChart/>
       </main>
     </div>
   );
