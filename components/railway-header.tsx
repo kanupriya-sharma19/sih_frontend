@@ -1,16 +1,24 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button"; // Adjust import path as needed
 
 export function RailwayHeader() {
   const router = useRouter();
 
-  const onLogout = () => {
-    router.push("/");
-  };
+  const onLogout = () => router.push("/");
+
+  const fontSizeOptions = ["A-", "A", "A+"];
+  const otherOptions = ["☾", "More"];
+  const navLinks = [
+    { label: "Passenger Dashboard" },
+    { label: "Peak Hours" },
+    { label: "Station Performance" },
+    { label: "Delays" },
+    { label: "Charts" },
+  ];
 
   return (
     <header className="w-full">
@@ -24,23 +32,30 @@ export function RailwayHeader() {
             <a href="#" className="hover:underline">
               Skip to Main Content
             </a>
+
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="px-2 h-6 text-xs">
-                A-
-              </Button>
-              <Button variant="ghost" size="sm" className="px-2 h-6 text-xs">
-                A
-              </Button>
-              <Button variant="ghost" size="sm" className="px-2 h-6 text-xs">
-                A+
-              </Button>
+              {fontSizeOptions.map((label) => (
+                <Button
+                  key={label}
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 px-2 text-xs bg-transparent hover:bg-white/20 text-white"
+                >
+                  {label}
+                </Button>
+              ))}
             </div>
-            <Button variant="ghost" size="sm" className="px-2 h-6 text-xs">
-              ☾
-            </Button>
-            <Button variant="ghost" size="sm" className="px-2 h-6 text-xs">
-              More
-            </Button>
+
+            {otherOptions.map((label) => (
+              <Button
+                key={label}
+                variant="ghost"
+                size="sm"
+                className="h-6 px-2 text-xs bg-transparent hover:bg-white/20 text-white"
+              >
+                {label}
+              </Button>
+            ))}
           </div>
         </div>
       </div>
@@ -50,37 +65,27 @@ export function RailwayHeader() {
         <div className="container mx-auto flex items-center justify-between px-4 h-14">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <Image
-              src="/images/image.png"
-              alt="Emblem"
-              width={50}
-              height={50}
-            />
+            <Image src="/images/image.png" alt="Emblem" width={50} height={50} />
           </div>
 
           {/* Nav links */}
           <nav className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
-              Passenger Dashboard
-            </Button>
-            <Button variant="ghost" size="sm">
-              Peak Hours
-            </Button>
-            <Button variant="ghost" size="sm">
-              Station Performance
-            </Button>
-            <Button variant="ghost" size="sm">
-              Delays
-            </Button>
-            <Button variant="ghost" size="sm">
-              Charts
-            </Button>
+            {navLinks.map((link) => (
+              <Button
+                key={link.label}
+                variant="ghost"
+                className="px-4 py-2 text-black font-medium hover:bg-purple-50"
+              >
+                {link.label}
+              </Button>
+            ))}
           </nav>
 
           {/* Logout */}
           <Button
             onClick={onLogout}
-            className="bg-purple-700 hover:bg-purple-500 text-white px-4 py-2 rounded-md"
+            variant="outline"
+            className="border-2 border-purple-600 text-black hover:bg-purple-50"
           >
             <LogOut className="h-4 w-4 mr-2" />
             Logout

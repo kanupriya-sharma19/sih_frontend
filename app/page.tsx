@@ -23,7 +23,7 @@ export default function RailwayDashboard() {
     else if (firstDigit === "3") route = "/reports/section_controller"
     else return alert("Invalid User ID")
 
-    router.push(route) // 🚀 directly redirect
+    router.push(route) 
   }
 
   return (
@@ -49,6 +49,7 @@ export default function RailwayDashboard() {
             type="text"
             placeholder="User ID"
             value={userId}
+            suppressHydrationWarning
             onChange={(e) => setUserId(e.target.value)}
             className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white"
           />
@@ -56,6 +57,7 @@ export default function RailwayDashboard() {
             type="password"
             placeholder="Password"
             value={password}
+            suppressHydrationWarning
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white"
           />

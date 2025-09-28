@@ -25,9 +25,14 @@ export function UserForm() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-6 py-3 shadow-md">
-          + Add New User
-        </Button>
+        <div
+          onClick={() => {
+            /* your click logic here */
+          }}
+          className="bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-6 py-3 shadow-md rounded cursor-pointer text-center transition"
+        >
+          + Add New Employee
+        </div>
       </DialogTrigger>
 
       <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">

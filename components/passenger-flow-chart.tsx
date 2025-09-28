@@ -26,11 +26,11 @@ export function PassengerFlowChart() {
           config={{
             passengers: {
               label: "Current Passengers",
-              color: "hsl(var(--chart-1))",
+              color: "#3b82f6", // blue-500
             },
             capacity: {
               label: "Station Capacity",
-              color: "hsl(var(--chart-2))",
+              color: "#60a5fa", 
             },
           }}
           className="h-[300px]"
@@ -40,8 +40,8 @@ export function PassengerFlowChart() {
               <XAxis dataKey="time" />
               <YAxis />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="passengers" fill="var(--color-passengers)" />
-              <Bar dataKey="capacity" fill="var(--color-capacity)" opacity={0.3} />
+              <Bar dataKey="passengers" fill="#3b82f6" /> {/* Visible blue */}
+              <Bar dataKey="capacity" fill="#93c5fd" opacity={0.6} /> {/* Lighter blue */}
             </BarChart>
           </ResponsiveContainer>
         </ChartContainer>

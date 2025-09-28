@@ -1,15 +1,21 @@
-import { Card, CardContent } from "@/components/ui/card"
-import type { LucideIcon } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import type { LucideIcon } from "lucide-react";
 
 interface MetricCardProps {
-  title: string
-  value: string | number
-  subtitle?: string
-  icon: LucideIcon
-  iconColor?: string
+  title: string;
+  value: string | number;
+  subtitle?: React.ReactNode;
+  icon: LucideIcon;
+  iconColor?: string;
 }
 
-export function MetricCard({ title, value, subtitle, icon: Icon, iconColor = "text-primary" }: MetricCardProps) {
+export function MetricCard({
+  title,
+  value,
+  subtitle,
+  icon: Icon,
+  iconColor = "text-primary",
+}: MetricCardProps) {
   return (
     <Card className="hover:shadow-md transition-shadow">
       <CardContent className="p-6">
@@ -23,5 +29,5 @@ export function MetricCard({ title, value, subtitle, icon: Icon, iconColor = "te
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

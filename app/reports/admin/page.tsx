@@ -1,5 +1,14 @@
 "use client";
-
+import {
+  Users,
+  Clock,
+  Train,
+  AlertTriangle,
+  MapPin,
+  TrendingUp,
+  TrendingDown,
+  Activity,
+} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { TrainScheduleChart } from "@/components/section";
@@ -12,10 +21,9 @@ import { PlatformOccupancy } from "@/components/platform-occupancy";
 import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, Clock, Train, MapPin, AlertTriangle } from "lucide-react";
 import { UserForm } from "@/components/add_new_user";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
-
+import { ChatBot } from "@/components/chat";
 const alertsPage1: Alert[] = [
   {
     message: "Power Outage",
@@ -31,12 +39,14 @@ const alertsPage1: Alert[] = [
   },
 ];
 
-export  default function RailwayDashboard() {
+export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations");
 
   return (
     <div className="min-h-screen bg-background">
       <RailwayHeader />
+      <ChatBot />
+
       <RailwayAlertCarousel alerts={alertsPage1} />
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">
@@ -75,45 +85,104 @@ export  default function RailwayDashboard() {
           </div>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-          <MetricCard
-            title="Section Passengers"
-            value="98,986"
-            subtitle="↑ 3.2% from yesterday"
-            icon={Users}
-            iconColor="text-blue-500"
-          />
-          <MetricCard
-            title="Avg Section Delay"
-            value="8.7 min"
-            subtitle="↓ 1.5 min vs last week"
-            icon={Clock}
-            iconColor="text-orange-500"
-          />
-          <MetricCard
-            title="Active Trains"
-            value="142"
-            subtitle="↑ 5 from yesterday"
-            icon={Train}
-            iconColor="text-green-500"
-          />
-          <MetricCard
-            title="Critical Delays"
-            value="4"
-            subtitle="2 more than average"
-            icon={AlertTriangle}
-            iconColor="text-red-500"
-          />
-          <MetricCard
-            title="Total Stations"
-            value="12"
-            subtitle="Fixed across network"
-            icon={MapPin}
-            iconColor="text-purple-500"
-          />
-        </div>
+     {/* Key Metrics */}
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+  {/* Top row - 5 cards */}
+  <MetricCard
+    title="Section Passengers"
+    value="3.24 million"
+    subtitle={
+      <span className="flex items-center text-green-600">
+        <TrendingUp className="w-4 h-4 mr-1" /> 3.2% from yesterday
+      </span>
+    }
+    icon={Users}
+    iconColor="text-blue-500"
+  />
+  <MetricCard
+    title="Avg Section Delay"
+    value="19 min"
+    subtitle={
+      <span className="flex items-center text-red-600">
+        <TrendingDown className="w-4 h-4 mr-1" /> 1.5 min less than yesterday
+      </span>
+    }
+    icon={Clock}
+    iconColor="text-orange-500"
+  />
+  <MetricCard
+    title="Active Trains"
+    value="2,342"
+    subtitle={
+      <span className="flex items-center text-green-600">
+        <TrendingUp className="w-4 h-4 mr-1" /> 5 more than yesterday
+      </span>
+    }
+    icon={Train}
+    iconColor="text-green-500"
+  />
+  <MetricCard
+    title="Critical Delays"
+    value="60"
+    subtitle={
+      <span className="flex items-center text-red-600">
+        <TrendingUp className="w-4 h-4 mr-1" /> 2 above daily avg
+      </span>
+    }
+    icon={AlertTriangle}
+    iconColor="text-red-500"
+  />
+  <MetricCard
+    title="Total Stations"
+    value="29"
+    subtitle="Fixed across network"
+    icon={MapPin}
+    iconColor="text-purple-500"
+  />
 
+  {/* 🔹 Center-aligned bottom row - Using grid columns */}
+  <div className="col-span-full grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
+    <div className="w-full max-w-xs">
+      <MetricCard
+        title="Track Utilization"
+        value="87%"
+        subtitle={
+          <span className="flex items-center text-green-600">
+            <TrendingUp className="w-4 h-4 mr-1" /> +2.5% from last month
+          </span>
+        }
+        icon={Activity}
+        iconColor="text-teal-500"
+      />
+    </div>
+    <div className="w-full max-w-xs">
+      <MetricCard
+        title="Throughput"
+        value="210 million ton-km"
+        subtitle={
+          <span className="flex items-center text-green-600">
+            <TrendingUp className="w-4 h-4 mr-1" /> +4.1% vs last quarter
+          </span>
+        }
+        icon={TrendingUp}
+        iconColor="text-indigo-500"
+      />
+    </div>
+    <div className="w-full max-w-xs">
+      <MetricCard
+        title="Incidents Reported"
+        value="9"
+        subtitle={
+          <span className="flex items-center text-red-600">
+            <TrendingUp className="w-4 h-4 mr-1" /> 1 above weekly avg
+          </span>
+        }
+        icon={AlertTriangle}
+        iconColor="text-rose-500"
+      />
+    </div>
+  </div>
+</div>
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SectionPassengerChart selectedStation={selectedStation} />

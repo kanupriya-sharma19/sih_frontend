@@ -12,12 +12,18 @@ const [chartType, setChartType] = useState("Linear");
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-6 py-3 shadow-md">
-          + Add New Train
-        </Button>
+   <div
+  onClick={() => {
+    /* your click logic here */
+  }}
+  className="bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-6 py-3 shadow-md rounded cursor-pointer text-center transition"
+>
+  + Add New Train
+</div>
+
       </DialogTrigger>
 
-      <DialogContent className="max-w-8xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-6 rounded-2xl shadow-xl">
+      <DialogContent className="max-w-8xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
         {/* Sticky Header */}
         <DialogHeader className="sticky top-0 bg-purple-50 z-10 border-b mt-2  border-purple-600 p-2 mb-4 w-full">
           <DialogTitle className="text-2xl font-bold text-gray-900 w-55">Add Rolling Stock</DialogTitle>

@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { X } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { X, MessageCircle, Send } from "lucide-react"
 
 type Message = { from: "user" | "bot"; text: string }
 
@@ -16,6 +16,18 @@ export function ChatBot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+ const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages, isOpen])
 
   const handleSend = (msg?: string) => {
     const text = msg || input
@@ -24,63 +36,97 @@ export function ChatBot() {
     const newMessage: Message = { from: "user", text }
     setMessages((prev) => [...prev, newMessage])
 
-    // simple bot echo response
+    // Simple bot echo response
     setTimeout(() => {
-      const botReply: Message = { from: "bot", text: `You asked: ${text}` }
+      const botReply: Message = { 
+        from: "bot", 
+        text: `I received your message about "${text}". This is a demo response.` 
+      }
       setMessages((prev) => [...prev, botReply])
     }, 600)
+  if (!mounted) return null;
 
     setInput("")
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       {/* Chat Window */}
       <div
-        className={`w-80 h-[28rem] bg-white shadow-xl rounded-2xl flex flex-col overflow-hidden transform transition-all duration-300 mb-3 ${
+        className={`w-80 h-[32rem] bg-gradient-to-br from-purple-50 to-pink-50 shadow-2xl rounded-2xl flex flex-col overflow-hidden transform transition-all duration-300 mb-3 border border-purple-100 ${
           isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0 pointer-events-none"
         }`}
       >
         {/* Header */}
-        <div className="bg-purple-600 text-white flex justify-between items-center p-3">
-          <div className="flex items-center gap-2">
-            <img
-              src="/images/chatbot.png"
-              alt="ChatBot Logo"
-              className="w-14 h-14 rounded-full object-cover"
-            />
-            <h2 className="font-bold text-lg">Drishti ChatBot</h2>
+        <div className="bg-gradient-to-r from-purple-700 via-purple-600 to-pink-600 text-white flex justify-between items-center p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="font-bold text-lg">Drishti Assistant</h2>
+              <p className="text-xs text-purple-200">Online • Ready to help</p>
+            </div>
           </div>
-          <button onClick={() => setIsOpen(false)}>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="p-1 rounded-full hover:bg-white/20 transition"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 p-3 space-y-2 overflow-y-auto bg-gray-50">
+        <div className="flex-1 p-4 space-y-4 overflow-y-auto bg-gradient-to-b from-white to-purple-50/50">
+          {messages.length === 0 && (
+            <div className="text-center text-purple-600 my-8">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <MessageCircle className="w-8 h-8 text-white" />
+              </div>
+              <p className="text-sm font-medium">Hello! How can I help you today?</p>
+              <p className="text-xs text-purple-400 mt-1">I'm here to assist with train information</p>
+            </div>
+          )}
+          
           {messages.map((msg, i) => (
             <div
               key={i}
-              className={`p-2 rounded-lg max-w-[80%] ${
-                msg.from === "user"
-                  ? "ml-auto bg-blue-100 text-blue-900"
-                  : "mr-auto bg-gray-200 text-gray-800"
-              }`}
+              className={`flex gap-2 ${msg.from === "user" ? "justify-end" : "justify-start"}`}
             >
-              {msg.text}
+              {msg.from === "bot" && (
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <MessageCircle className="w-4 h-4 text-white" />
+                </div>
+              )}
+              <div
+                className={`p-3 rounded-2xl max-w-[80%] break-words shadow-sm ${
+                  msg.from === "user"
+                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-br-none shadow-lg"
+                    : "bg-white text-purple-900 rounded-bl-none border border-purple-100 shadow-md"
+                }`}
+              >
+                {msg.text}
+              </div>
+              {msg.from === "user" && (
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <span className="text-white text-sm font-bold">U</span>
+                </div>
+              )}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
 
         {/* Default Prompts */}
         {messages.length === 0 && (
-          <div className="p-3 border-t bg-gray-100">
-            <div className="flex flex-col gap-2">
+          <div className="p-3 border-t border-purple-100 bg-white/80 backdrop-blur-sm">
+            <p className="text-xs text-purple-600 mb-2 font-medium">Quick questions:</p>
+            <div className="grid grid-cols-2 gap-2">
               {defaultPrompts.map((prompt, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(prompt)}
-                  className="text-sm font-bold bg-purple-200 text-black px-3 py-2 rounded-lg hover:bg-purple-300 transition text-left"
+                  className="text-xs bg-purple-100 hover:bg-purple-200 text-purple-700 px-3 py-2 rounded-lg transition text-left border border-purple-200 hover:border-purple-300"
                 >
                   {prompt}
                 </button>
@@ -89,35 +135,44 @@ export function ChatBot() {
           </div>
         )}
 
-        {/* Input */}
-        <div className="p-2 border-t flex bg-white">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSend()}
-            className="flex-1 border rounded-lg px-3 py-2 text-sm outline-none"
-            placeholder="Type a message..."
-          />
-          <button
-            onClick={() => handleSend()}
-            className="ml-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Send
-          </button>
+        {/* Input Area */}
+        <div className="p-3 border-t border-purple-100 bg-white/90 backdrop-blur-sm">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
+              className="flex-1 border border-purple-200 rounded-full px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent bg-white"
+              placeholder="Type your message..."
+            />
+            <button
+              onClick={() => handleSend()}
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition shadow-lg hover:shadow-xl"
+            >
+              <Send className="w-4 h-4" />
+            </button>
+          </div>
+          <p className="text-xs text-purple-400 text-center mt-2">
+            Drishti Assistant • Always here to help
+          </p>
         </div>
       </div>
 
       {/* Floating Toggle Button */}
-      <button
+      <button suppressHydrationWarning
         onClick={() => setIsOpen((prev) => !prev)}
-        className="bg-purple-600 text-white p-1 rounded-full shadow-lg hover:bg-purple-700 transition"
+        className={`w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 border-4 border-white ${
+          isOpen 
+            ? "bg-gradient-to-r from-purple-400 to-pink-400 scale-90" 
+            : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 scale-100 hover:scale-110"
+        }`}
       >
-        <img
-          src="/images/chatbot.png"
-          alt="ChatBot Logo"
-          className="w-18 h-18 rounded-full object-cover"
-        />
+        {isOpen ? (
+          <X className="w-6 h-6 text-white" />
+        ) : (
+          <MessageCircle className="w-6 h-6 text-white" />
+        )}
       </button>
     </div>
   )
