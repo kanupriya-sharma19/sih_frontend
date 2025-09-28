@@ -29,10 +29,10 @@ export function EmployeeForm() {
           <span className="break-all">moksh.drishti25022@gmail.com</span>
         </p>
         <p>
-          <span className="font-semibold">Designation:</span> Statuion Master
+          <span className="font-semibold">Designation:</span> Station Master
         </p>
         <p>
-          <span className="font-semibold">Station Code:</span> CSMT
+          <span className="font-semibold">Station Code:</span> ADH
         </p>
         <p>
           <span className="font-semibold">Date of Birth:</span> 25/02/2002

@@ -38,7 +38,7 @@ export function LoginForm() {
     <form className="flex flex-col gap-4 w-full" onSubmit={handleLogin}>
       <input
         type="text"
-        placeholder="User ID"
+        placeholder="Employee ID"
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
         className="w-full px-4 py-2 rounded border focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white"
