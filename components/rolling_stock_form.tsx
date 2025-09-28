@@ -16,7 +16,7 @@ const [chartType, setChartType] = useState("Linear");
    suppressHydrationWarning
       className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
     >
-      + Add New Rolling Stock
+      + Add Rolling Stock
     </button>
 
       </DialogTrigger>
@@ -94,15 +94,17 @@ const [chartType, setChartType] = useState("Linear");
                   <label className="flex items-center gap-2"><input type="checkbox" className="accent-purple-600" /> 1.5kV DC</label>
                 </div>
               </div>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" placeholder="Speed max [km/h]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
-              <input type="text" placeholder="Tractive Effort max [kN]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
-              <input type="text" placeholder="Tractive effort min [kN]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
-              <input type="text" placeholder="Adh. good [%]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
-              <input type="text" placeholder="Adh. bad [%]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
-              <input type="text" placeholder="Adh. norma; [%]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
-            
-            </div>
+           {/* Speed & Traction Section */}
+<div className="md:col-span-2">   {/* span full width in the parent grid */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+    <input type="text" placeholder="Speed max [km/h]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+    <input type="text" placeholder="Tractive Effort max [kN]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+    <input type="text" placeholder="Tractive effort min [kN]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+    <input type="text" placeholder="Adh. good [%]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+    <input type="text" placeholder="Adh. bad [%]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+    <input type="text" placeholder="Adh. normal [%]" className="w-full border border-gray-300 rounded-lg p-3 bg-gray-50 focus:ring-2 focus:ring-purple-500" />
+  </div>
+</div>
             </div>
           </div>
 

@@ -202,17 +202,18 @@ export default function RailwayDashboard() {
             </div>
           </div>
         </div>
+         <TrainScheduleChart />
         <RealTimeAlerts alerts={page1Alerts} />
 
         {/* Charts */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SectionPassengerChart selectedStation={selectedStation} />
           <SectionDelayChart selectedStation={selectedStation} />
         </div>
-        {/* Platform Occupancy + Alerts */}
-        <PlatformOccupancyChart />
+       
       </main>
-      <TrainScheduleChart />
+     
     </div>
   );
 }
