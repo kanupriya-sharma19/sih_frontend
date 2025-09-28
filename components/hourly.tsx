@@ -9,15 +9,16 @@ import {
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 const delayData = [
-  { time: "06:00", delay: 3 },
-  { time: "08:00", delay: 14 },
-  { time: "10:00", delay: 4 },
-  { time: "12:00", delay: 6 },
-  { time: "14:00", delay: 7 },
-  { time: "16:00", delay: 5 },
-  { time: "18:00", delay: 20 },
-  { time: "20:00", delay: 8 },
+  { time: "06:00", delay: 2 },
+  { time: "08:00", delay: 7 },
+  { time: "10:00", delay: 2 },
+  { time: "12:00", delay: 3 },
+  { time: "14:00", delay: 3 },
+  { time: "16:00", delay: 3 },
+  { time: "18:00", delay: 10 },
+  { time: "20:00", delay: 4 },
 ];
+
 
 export function HourlyDelayChart() {
   return (

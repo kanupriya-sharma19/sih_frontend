@@ -17,12 +17,12 @@ interface SectionPassengerChartProps {
 }
 
 const dataAll = [
-  { hour: "6 AM", MMCT: 1200, Borivali: 980, Bandra: 1100, Dadar: 900, Andheri: 1000 },
-  { hour: "9 AM", MMCT: 2400, Borivali: 2000, Bandra: 2200, Dadar: 1800, Andheri: 2100 },
-  { hour: "12 PM", MMCT: 1600, Borivali: 1500, Bandra: 1700, Dadar: 1400, Andheri: 1550 },
-  { hour: "3 PM", MMCT: 1800, Borivali: 1600, Bandra: 1750, Dadar: 1500, Andheri: 1650 },
-  { hour: "6 PM", MMCT: 3000, Borivali: 2800, Bandra: 2900, Dadar: 2500, Andheri: 2700 },
-  { hour: "9 PM", MMCT: 1400, Borivali: 1200, Bandra: 1300, Dadar: 1000, Andheri: 1150 },
+  { hour: "6 AM", MMCT: 120000, Borivali: 98000, Bandra: 110000, Dadar: 90000, Andheri: 100000 },
+  { hour: "9 AM", MMCT: 240000, Borivali: 200000, Bandra: 220000, Dadar: 180000, Andheri: 210000 },
+  { hour: "12 PM", MMCT: 160000, Borivali: 150000, Bandra: 170000, Dadar: 140000, Andheri: 155000 },
+  { hour: "3 PM", MMCT: 180000, Borivali: 160000, Bandra: 175000, Dadar: 150000, Andheri: 165000 },
+  { hour: "6 PM", MMCT: 300000, Borivali: 280000, Bandra: 290000, Dadar: 250000, Andheri: 270000 },
+  { hour: "9 PM", MMCT: 140000, Borivali: 120000, Bandra: 130000, Dadar: 100000, Andheri: 115000 },
 ]
 
 export function SectionPassengerChart({ selectedStation }: SectionPassengerChartProps) {

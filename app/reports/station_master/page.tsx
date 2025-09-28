@@ -61,7 +61,7 @@ export default function RailwayDashboard() {
   {/* Top row: Passenger & Punctuality */}
   <MetricCard
     title="Daily Passengers"
-    value="2.5L"
+    value="1.5M"
     subtitle={
       <span className="flex items-center text-green-600">
         <TrendingUp className="w-4 h-4 mr-1" /> +2.5% vs yesterday

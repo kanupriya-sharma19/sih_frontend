@@ -14,11 +14,12 @@ import {
 } from "recharts"
 
 const delayDistribution = [
-  { name: "0-5 min", value: 4800 },
-  { name: "5-15 min", value: 2340 },
-  { name: "15-30 min", value: 980 },
-  { name: "30+ min", value: 420 },
-]
+  { name: "0-5 min", value: 960 },
+  { name: "5-15 min", value: 468 },
+  { name: "15-30 min", value: 196 },
+  { name: "30+ min", value: 84 },
+];
+
 
 const COLORS = [
   "var(--chart-1)", // green

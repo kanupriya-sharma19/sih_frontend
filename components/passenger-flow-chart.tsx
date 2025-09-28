@@ -5,15 +5,16 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 
 const passengerData = [
-  { time: "06:00", passengers: 1200, capacity: 2000 },
-  { time: "08:00", passengers: 1800, capacity: 2000 },
-  { time: "10:00", passengers: 1400, capacity: 2000 },
-  { time: "12:00", passengers: 1600, capacity: 2000 },
-  { time: "14:00", passengers: 1300, capacity: 2000 },
-  { time: "16:00", passengers: 1700, capacity: 2000 },
-  { time: "18:00", passengers: 1900, capacity: 2000 },
-  { time: "20:00", passengers: 1100, capacity: 2000 },
-]
+  { time: "06:00", passengers: 30000, capacity: 40000 },
+  { time: "08:00", passengers: 45000, capacity: 50000 },
+  { time: "10:00", passengers: 35000, capacity: 40000 },
+  { time: "12:00", passengers: 40000, capacity: 44000 },
+  { time: "14:00", passengers: 32500, capacity: 40000 },
+  { time: "16:00", passengers: 42500, capacity: 50000 },
+  { time: "18:00", passengers: 47500, capacity: 54000 },
+  { time: "20:00", passengers: 27500, capacity: 36000 },
+];
+
 
 export function PassengerFlowChart() {
   return (
