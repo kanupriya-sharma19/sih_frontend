@@ -13,12 +13,43 @@ import {
   CartesianGrid,
 } from "recharts";
 
+// ---------------- TYPES ----------------
+interface Station {
+  code: string;
+  name: string;
+  position: number;
+}
+
+interface TrainStop {
+  station: string;
+  time: number; // in minutes
+}
+
+interface TrainSchedule {
+  id: string;
+  direction: string;
+  color: string;
+  stations: TrainStop[];
+}
+
+interface TrainPoint {
+  time: number;
+  position: number;
+  trainId: string;
+}
+
+interface ChartRow {
+  time: number;
+  [trainId: string]: number | undefined;
+}
+
+// ---------------- DATA ----------------
 // Train schedule data
-const trainSchedules = [
-  // BL-ST Trains (Red)
+const trainSchedules: TrainSchedule[] = [
+  // BL-ST Trains (Red) - Assuming this is VR -> CHG direction
   { 
     id: "BL-ST-1", 
-    direction: "BL-ST", 
+    direction: "VR -> CHG", 
     color: "#ef4444",
     stations: [
       { station: "VR", time: 720 }, // 12:00
@@ -36,7 +67,7 @@ const trainSchedules = [
   },
   { 
     id: "BL-ST-2", 
-    direction: "BL-ST", 
+    direction: "VR -> CHG", 
     color: "#ef4444",
     stations: [
       { station: "VR", time: 840 }, // 14:00
@@ -54,7 +85,7 @@ const trainSchedules = [
   },
   { 
     id: "BL-ST-3", 
-    direction: "BL-ST", 
+    direction: "VR -> CHG", 
     color: "#ef4444",
     stations: [
       { station: "VR", time: 960 }, // 16:00
@@ -72,7 +103,7 @@ const trainSchedules = [
   },
   { 
     id: "BL-ST-4", 
-    direction: "BL-ST", 
+    direction: "VR -> CHG", 
     color: "#ef4444",
     stations: [
       { station: "VR", time: 1080 }, // 18:00
@@ -89,10 +120,10 @@ const trainSchedules = [
     ]
   },
 
-  // ST-BL Trains (Blue)
+  // ST-BL Trains (Blue) - Assuming this is CHG -> VR direction
   { 
     id: "ST-BL-1", 
-    direction: "ST-BL", 
+    direction: "CHG -> VR", 
     color: "#3b82f6",
     stations: [
       { station: "CHG", time: 780 }, // 13:00
@@ -110,7 +141,7 @@ const trainSchedules = [
   },
   { 
     id: "ST-BL-2", 
-    direction: "ST-BL", 
+    direction: "CHG -> VR", 
     color: "#3b82f6",
     stations: [
       { station: "CHG", time: 900 }, // 15:00
@@ -128,7 +159,7 @@ const trainSchedules = [
   },
   { 
     id: "ST-BL-3", 
-    direction: "ST-BL", 
+    direction: "CHG -> VR", 
     color: "#3b82f6",
     stations: [
       { station: "CHG", time: 1020 }, // 17:00
@@ -146,7 +177,7 @@ const trainSchedules = [
   },
   { 
     id: "ST-BL-4", 
-    direction: "ST-BL", 
+    direction: "CHG -> VR", 
     color: "#3b82f6",
     stations: [
       { station: "CHG", time: 1140 }, // 19:00
@@ -165,7 +196,7 @@ const trainSchedules = [
 ];
 
 // Station order and positions
-const stations = [
+const stations: Station[] = [
   { code: "VR", name: "VR", position: 0 },
   { code: "BS", name: "BS", position: 1 },
   { code: "NSL", name: "NSL", position: 2 },
@@ -179,36 +210,52 @@ const stations = [
   { code: "CHG", name: "CHG", position: 10 },
 ];
 
-// Transform data for the chart
-const chartData = stations.map(station => {
-  const dataPoint: any = { station: station.code };
-  
-  trainSchedules.forEach(train => {
-    const stationTime = train.stations.find(s => s.station === station.code);
-    if (stationTime) {
-      dataPoint[train.id] = stationTime.time;
+// ---------------- TRANSFORMATION ----------------
+const allPoints: TrainPoint[] = [];
+trainSchedules.forEach(train => {
+  train.stations.forEach(stop => {
+    const stationInfo = stations.find(s => s.code === stop.station);
+    if (stationInfo) {
+      allPoints.push({
+        time: stop.time,
+        position: stationInfo.position,
+        trainId: train.id,
+      });
     }
   });
-  
-  return dataPoint;
 });
 
-// Custom tooltip
+const pointsByTime: Record<number, ChartRow> = allPoints.reduce(
+  (acc, point) => {
+    if (!acc[point.time]) {
+      acc[point.time] = { time: point.time };
+    }
+    acc[point.time][point.trainId] = point.position;
+    return acc;
+  },
+  {} as Record<number, ChartRow>
+);
+
+const chartData: ChartRow[] = Object.values(pointsByTime).sort(
+  (a, b) => a.time - b.time
+);
+
+// ---------------- CUSTOM TOOLTIP ----------------
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
-    const station = stations.find(s => s.code === label);
+    const time = new Date(0);
+    time.setMinutes(label);
+    const timeString = time.toTimeString().slice(0, 5);
+
     return (
       <div className="bg-white p-3 border border-gray-300 rounded-lg shadow-lg">
-        <p className="font-bold">Station: {label}</p>
+        <p className="font-bold">Time: {timeString}</p>
         {payload.map((entry: any, index: number) => {
-          const train = trainSchedules.find(t => t.id === entry.dataKey);
-          const time = new Date(0);
-          time.setMinutes(entry.value);
-          const timeString = time.toTimeString().slice(0, 5);
-          
+          const station = stations.find(s => s.position === entry.value);
+          if (!station) return null;
           return (
             <p key={index} style={{ color: entry.color }}>
-              {train?.direction}: {timeString}
+              {entry.dataKey}: <strong>{station.code}</strong>
             </p>
           );
         })}
@@ -218,6 +265,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
+// ---------------- COMPONENT ----------------
 export function TrainScheduleChart() {
   return (
     <Card className="w-full">
@@ -226,11 +274,11 @@ export function TrainScheduleChart() {
         <div className="flex gap-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-4 h-1 bg-red-500"></div>
-            <span>BL-ST Trains</span>
+            <span>VR → CHG Trains</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-1 bg-blue-500"></div>
-            <span>ST-BL Trains</span>
+            <span>CHG → VR Trains</span>
           </div>
         </div>
         
@@ -257,48 +305,52 @@ export function TrainScheduleChart() {
       
       <CardContent>
         <ResponsiveContainer width="100%" height={600}>
-          <LineChart data={chartData} margin={{ top: 20, right: 30, left: 60, bottom: 50 }}>
+          <LineChart data={chartData} margin={{ top: 20, right: 60, left: 20, bottom: 50 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             
-            {/* X Axis - Stations */}
+            {/* X-Axis (Time) */}
             <XAxis 
-              dataKey="station" 
-              type="category"
-              label={{ value: "Stations", position: "insideBottom", offset: -10 }}
-            />
-            
-            {/* Y Axis - Time */}
-            <YAxis 
               type="number"
-              domain={[700, 1350]}
+              dataKey="time"
+              domain={['dataMin - 30', 'dataMax + 30']}
               tickFormatter={(value) => {
                 const hours = Math.floor(value / 60);
                 const minutes = value % 60;
                 return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
               }}
-              label={{ value: "Time (24-Hour Format)", angle: -90, position: "insideLeft" }}
+              label={{ value: "Time (24-Hour Format)", position: "insideBottom", offset: -20 }}
+            />
+            
+            {/* Y-Axis (Stations) */}
+            <YAxis 
+              type="number"
+              domain={[0, stations.length - 1]}
+              ticks={stations.map(s => s.position)}
+              tickFormatter={(value) => stations[value]?.code || ""}
+              label={{ value: "Stations", angle: -90, position: "insideLeft" }}
+              reversed={true}
             />
             
             <Tooltip content={<CustomTooltip />} />
-            <Legend />
+            <Legend wrapperStyle={{ bottom: 10 }} />
             
-            {/* Hour reference lines */}
-            {[720, 780, 840, 900, 960, 1020, 1080, 1140, 1200, 1260, 1320].map((time, index) => (
+            {/* Reference Lines (Hour Marks) */}
+            {[720, 780, 840, 900, 960, 1020, 1080, 1140, 1200, 1260, 1320].map((time) => (
               <ReferenceLine 
                 key={time}
-                y={time}
+                x={time}
                 stroke="#e5e7eb"
                 strokeDasharray="2 2"
                 label={{
                   value: `${Math.floor(time/60)}:00`,
-                  position: 'right',
-                  fill: '#6b7280',
-                  fontSize: 12
+                  position: "top",
+                  fill: "#6b7280",
+                  fontSize: 12,
                 }}
               />
             ))}
             
-            {/* Train lines */}
+            {/* Train Lines */}
             {trainSchedules.map((train) => (
               <Line
                 key={train.id}
@@ -306,23 +358,15 @@ export function TrainScheduleChart() {
                 dataKey={train.id}
                 stroke={train.color}
                 strokeWidth={2}
-                dot={{ fill: train.color, r: 4 }}
-                activeDot={{ r: 6 }}
-                name={train.direction}
+                dot={{ r: 3 }}
+                activeDot={{ r: 5 }}
+                name={train.id}
                 connectNulls
               />
             ))}
           </LineChart>
         </ResponsiveContainer>
-        
-        {/* Station names */}
-        <div className="mt-4 text-center text-sm text-gray-600">
-          <p>VR → BS → NSL → MR → DS → BO → AND → BND → DR → MCT → CHG</p>
-        </div>
-        
-     
       </CardContent>
     </Card>
   );
 }
-
