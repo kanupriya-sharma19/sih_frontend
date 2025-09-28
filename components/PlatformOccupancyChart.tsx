@@ -2,7 +2,7 @@
 
 'use client'; // This directive is necessary for client-side libraries like Plotly
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { Data, Layout, Config } from 'plotly.js';
 
@@ -19,6 +19,10 @@ interface TrainEntry {
 }
 
 export function PlatformOccupancyChart() {
+  // Hydration fix: Only render chart after mount
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => { setIsMounted(true); }, []);
+
   // --- Data and Logic exactly from your HTML file ---
   const trainSchedule: TrainEntry[] = [
     // Platform 1
@@ -83,6 +87,8 @@ export function PlatformOccupancyChart() {
       border: borderColors[i % borderColors.length],
     };
   });
+
+  if (!isMounted) return null;
 
   trainSchedule.forEach((train) => {
     const startTime = new Date(`${today}T${train.arrival}:00`);
