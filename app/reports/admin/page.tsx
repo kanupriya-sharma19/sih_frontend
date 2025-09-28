@@ -24,6 +24,9 @@ import { Button } from "@/components/ui/button";
 import { UserForm } from "@/components/add_new_user";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { ChatBot } from "@/components/chat";
+import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
+import { TrainChart } from "@/components/TrainChart";
+
 const alertsPage1: Alert[] = [
   {
     message: "Power Outage",
@@ -192,12 +195,12 @@ export default function RailwayDashboard() {
         {/* Platform Occupancy + Alerts */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <PlatformOccupancy />
+            <PlatformOccupancyChart />
           </div>
           <RealTimeAlerts />
         </div>
       </main>
-      <TrainScheduleChart />
+      
     </div>
   );
 }

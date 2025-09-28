@@ -27,7 +27,7 @@ import { Button } from "@/components/ui/button";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { PlatformOccupancy } from "@/components/platform-occupancy";
 import {ChatBot} from "@/components/chat";
-
+import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
 const alertsPage1: Alert[] = [
   { message: "Power Outage", time: "8:00am", type: "danger", station: "Dadar" },
   {
@@ -155,7 +155,7 @@ export default function RailwayDashboard() {
           {/* <PassengerFlowChart /> */}
         </div>
         <PitLineChart />
-        <PlatformOccupancy />
+        <PlatformOccupancyChart />
         {/* Additional Charts Section */}
         {/* <Card>
           <CardHeader>
