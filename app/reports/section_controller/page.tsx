@@ -34,14 +34,23 @@ import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { ChatBot } from "@/components/chat";
 import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
 import { TrainChart } from "@/components/TrainChart";
+type AlertItem = { type: "warning" | "info" | "success"; message: string; time: string };
+
+const page1Alerts: AlertItem[] = [
+  { type: "warning", message: "Local Train 501 Borivali–Churchgate delayed by 10 mins due to signal checks", time: "2 mins ago" },
+  { type: "warning", message: "Local Train 709 Dadar–Bandra Junction halted near Bandra due to track inspection", time: "5 mins ago" },
+  { type: "warning", message: "Local Train 601 Churchgate–Bandra slow due to high passenger load", time: "7 mins ago" },
+  { type: "info", message: "Maintenance scheduled at Dadar Station foot overbridge from 13:00–15:00", time: "15 mins ago" },
+];
+
 
 export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations");
   const alertsPage1: Alert[] = [
     {
-      message: "Power Outage",
-      time: "8:00am",
-      type: "danger",
+      message: "Maintenance scheduled at Dadar Station foot overbridge",
+      time: "13:00pm",
+      type: "info",
       station: "Dadar",
     },
     {
@@ -73,6 +82,7 @@ export default function RailwayDashboard() {
             {/* Add Train Button + Rolling Stock Modal */}
             <RollingStockForm />
             <select
+            suppressHydrationWarning
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
               className="
@@ -192,6 +202,7 @@ export default function RailwayDashboard() {
             </div>
           </div>
         </div>
+        <RealTimeAlerts alerts={page1Alerts} />
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -201,7 +212,6 @@ export default function RailwayDashboard() {
         {/* Platform Occupancy + Alerts */}
         <PlatformOccupancyChart />
       </main>
-      <RealTimeAlerts />
       <TrainScheduleChart />
     </div>
   );

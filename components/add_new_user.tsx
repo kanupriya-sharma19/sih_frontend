@@ -58,6 +58,7 @@ export function UserForm() {
         <div className="flex justify-center">
           <Button
             type="button"
+            suppressHydrationWarning
             onClick={() => setShowForm(true)}
             className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-2 px-6 rounded shadow-md"
           >

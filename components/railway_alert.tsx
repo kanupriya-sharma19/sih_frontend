@@ -1,27 +1,36 @@
-import { AlertTriangle } from "lucide-react"
+"use client"
+
+import { AlertTriangle, Info, CheckCircle } from "lucide-react"
 
 interface RailwayAlertProps {
-  title?: string
   message: string
   time: string
+  type?: "danger" | "info" | "success" | "warning"
+  className?: string
 }
 
-export function RailwayAlert({ title = "Alert", message, time }: RailwayAlertProps) {
-  return (
-    <div className="flex items-center justify-between bg-red-500 w-1/3 text-white rounded-lg px-4 py-3 shadow-md">
-      {/* Left Section: Icon + Title + Message */}
-      <div className="flex items-center space-x-3">
-        <div className="bg-white text-black p-2 rounded-md">
-          <AlertTriangle className="w-6 h-6" />
-        </div>
-        <div className="flex flex-col">
-          <span className="font-bold text-lg">{title}</span>
-          <span className="italic">{message}</span>
-        </div>
-      </div>
+export function RailwayAlert({ message, time, type, className }: RailwayAlertProps) {
+  const bgColor =
+    type === "danger"
+      ? "bg-red-400"
+      : type === "success"
+      ? "bg-green-400"
+      : "bg-blue-400"
 
-      {/* Right Section: Time */}
-      <div className="font-bold">{time}</div>
+  const Icon =
+    type === "danger"
+      ? AlertTriangle
+      : type === "info"
+      ? Info
+      : CheckCircle
+
+  return (
+    <div className={`flex items-center justify-center space-x-3 w-2/5 px-4 py-2 rounded-lg ${bgColor} ${className}`}>
+      <Icon className="w-5 h-5 flex-shrink-0 text-black" />
+      <div className="flex flex-col items-center text-center">
+        <span className="font-semibold text-black text-lg">{message}</span>
+        <span className="text-xs text-black">{time}</span>
+      </div>
     </div>
   )
 }

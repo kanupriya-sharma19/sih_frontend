@@ -95,6 +95,7 @@ export function RailwayHeader() {
           <div>
             <button
               onClick={onLogout}
+              suppressHydrationWarning
               className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
               type="button"
             >
