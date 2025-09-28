@@ -21,7 +21,6 @@ import { BotsPlatformChart } from "@/components/bots_platform";
 import { PassengerFlowChart } from "@/components/passenger-flow-chart";
 import { HourlyDelayChart } from "@/components/hourly";
 import { PeakHoursChart } from "@/components/bagraph_rush";
-import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
@@ -29,18 +28,30 @@ import { PlatformOccupancy } from "@/components/platform-occupancy";
 import { ChatBot } from "@/components/chat";
 import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
 import { useRouter } from "next/navigation";
+import {RealTimeAlerts} from "@/components/real-time-alerts"
+
+type AlertItem = { type: "warning" | "info" | "success"; message: string; time: string };
+
+const page1Alerts: AlertItem[] = [
+  { type: "warning", message: "Local Train 501 Borivali–Churchgate delayed by 10 mins due to signal checks", time: "2 mins ago" },
+  { type: "warning", message: "Local Train 709 Dadar–Bandra Junction halted near Bandra due to track inspection", time: "5 mins ago" },
+  { type: "success", message: "All suburban services running on time in Western Railways zone", time: "3 mins ago" },
+  { type: "warning", message: "Local Train 601 Churchgate–Bandra slow due to high passenger load", time: "7 mins ago" },
+  { type: "info", message: "Maintenance scheduled at Andheri Station foot overbridge from 18:00–20:00", time: "15 mins ago" },
+];
+
 
 const alertsPage1: Alert[] = [
   {
-    message: "Power Outage",
+    message: "Train 709 halted near Bandra due to track inspection",
     time: "3:30pm",
     type: "danger",
     station: "Andheri",
   },
   {
-    message: "Signal Failure",
+    message: "Maintenance scheduled at Andheri Station foot overbridge from 18:00–20:00",
     time: "3:00pm",
-    type: "danger",
+    type: "info",
     station: "Andheri",
   },
 ];
@@ -156,7 +167,7 @@ export default function RailwayDashboard() {
             <div className="w-full md:w-1/2 lg:w-1/4">
               <MetricCard
                 title="Platforms"
-                value="10"
+                value="9"
                 subtitle="All operational"
                 icon={MapPin}
                 iconColor="text-purple-500"
@@ -179,6 +190,8 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Charts Grid */}
+                        <RealTimeAlerts alerts={page1Alerts} />
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <PassengerFlowChart />
           <HourlyDelayChart />
@@ -188,6 +201,7 @@ export default function RailwayDashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* <PassengerFlowChart /> */}
         </div>
+        
         <PitLineChart />
         <PlatformOccupancyChart />
       </main>
