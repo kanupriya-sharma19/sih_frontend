@@ -219,9 +219,7 @@ export default function RailwayDashboard() {
           </div>
         </div>
 
-        {/* Charts Grid */}
-                        <RealTimeAlerts alerts={page1Alerts} />
-
+=
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <PassengerFlowChart />
           <HourlyDelayChart />
