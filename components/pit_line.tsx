@@ -175,6 +175,10 @@ export function PitLineChart() {
           <div>Time: {hoveredSession.start} - {hoveredSession.end}</div>
         </div>
       )}
+      <div className="mt-6 text-center text-black font-medium">
+  We can utilize the remaining pit capacity more efficiently to reduce idle time and improve scheduling.
+</div>
+
     </div>
   );
 }
