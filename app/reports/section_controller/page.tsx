@@ -30,6 +30,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { RollingStockForm } from "@/components/rolling_stock_form";
+import { PunctualityTrendChart } from "@/components/PunctualityTrendChart";
 import { TrainScheduleChart } from "@/components/section";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { ChatBot } from "@/components/chat";
@@ -60,6 +61,67 @@ export default function RailwayDashboard() {
       type: "danger",
       station: "CSMT",
     },
+    {
+      message: "Track Maintenance Work",
+      time: "9:30am",
+      type: "danger",
+      station: "Borivali",
+    },
+      {
+    message: "Train 19015 Mumbai Central–Ahmedabad Express delayed by 25 mins",
+    time: "5:00pm",
+    type: "warning",
+    station: "Mumbai Central",
+  },
+  {
+    message:
+      "Train 12957 Bandra Terminus–Gandhinagar Express halted near Borivali due to signal checks",
+    time: "4:55pm",
+    type: "warning",
+    station: "Borivali",
+  },
+  {
+    message: "All signal systems operational in Western Railways zone",
+    time: "5:10pm",
+    type: "success",
+    station: "Western Zone",
+  },
+  {
+    message: "Local Train 501 Borivali–Churchgate delayed by 8 mins near Andheri",
+    time: "5:15pm",
+    type: "warning",
+    station: "Andheri",
+  },
+  {
+    message: "Maintenance scheduled at Andheri Station foot overbridge from 18:00–20:00",
+    time: "3:00pm",
+    type: "info",
+    station: "Andheri",
+  },
+  {
+    message: "Track inspection ongoing at Dadar station, Platform 5 temporarily closed",
+    time: "4:30pm",
+    type: "info",
+    station: "Dadar",
+  },
+  {
+    message: "Express Train 22119 departed CST on time",
+    time: "2:45pm",
+    type: "success",
+    station: "CST Mumbai",
+  },
+  {
+    message: "Heavy crowd reported at Thane Station during peak hours",
+    time: "6:00pm",
+    type: "warning",
+    station: "Thane",
+  },
+  {
+    message: "Emergency medical assistance provided to passenger at Borivali",
+    time: "6:15pm",
+    type: "info",
+    station: "Borivali",
+  },
   ];
 
   return (
@@ -203,8 +265,9 @@ export default function RailwayDashboard() {
             </div>
           </div>
         </div>
+        
          <TrainScheduleChart />
-        <RealTimeAlerts alerts={page1Alerts} />
+        
 
         {/* Charts */}
         
@@ -214,7 +277,7 @@ export default function RailwayDashboard() {
         </div>
         {/* Platform Occupancy + Alerts */}
         <DelayParetoChart />
-       
+       <PunctualityTrendChart />
       </main>
      
     </div>

@@ -22,7 +22,8 @@ import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { UserForm } from "@/components/add_new_user";
 import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { ChatBot } from "@/components/chat";
-
+import { ImplementationImpactChart } from "@/components/ImplementationImpactChart";
+import Image from "next/image";
 type AlertItem = {
   type: "warning" | "info" | "success";
   message: string;
@@ -74,7 +75,28 @@ export default function RailwayDashboard() {
       <ChatBot />
 
       {/* Top alerts carousel */}
-      <RailwayAlertCarousel alerts={alertsPage1} />
+       <div className="relative h-52 w-full overflow-hidden">
+  <Image
+    src="/images/person 1.png" // avoid spaces in file name
+    alt="Control Panel"
+    fill
+    className="object-cover opacity-80"
+  />
+
+  {/* Semi-transparent black overlay */}
+  <div className="absolute inset-0 bg-black/50" />
+
+  {/* Centered Logo */}
+  <div className="absolute inset-0 flex items-center justify-center">
+    <Image
+      src="/images/white_logo.png" // your logo file
+      alt="Logo"
+      width={500}   // adjust size as needed
+      height={500}
+      className="object-contain"
+    />
+  </div>
+</div>
 
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">
@@ -210,7 +232,7 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Charts */}
-                <RealTimeAlerts alerts={page1Alerts} />
+                
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SectionPassengerChart selectedStation={selectedStation} />
@@ -218,7 +240,7 @@ export default function RailwayDashboard() {
         </div>
 
         {/* Platform Occupancy + Alerts */}
-        <PlatformOccupancyChart />
+        <ImplementationImpactChart />
 
         {/* Train Schedule */}
         <TrainScheduleChart />

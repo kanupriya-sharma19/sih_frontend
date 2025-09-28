@@ -54,6 +54,36 @@ const alertsPage1: Alert[] = [
     type: "info",
     station: "Andheri",
   },
+  {
+    message: "Local Train 501 Borivali–Churchgate delayed by 10 mins due to signal checks",
+    time: "2 mins ago",
+    type: "warning",
+    station: "Andheri",
+  },
+  {
+    message: "Local Train 709 Dadar–Bandra Junction halted near Bandra due to track inspection",
+    time: "5 mins ago",
+    type: "warning",
+    station: "Andheri",
+  },
+  {
+    message: "All suburban services running on time in Western Railways zone",
+    time: "3 mins ago",
+    type: "success",
+    station: "Andheri",
+  },
+  {
+    message: "Local Train 601 Churchgate–Bandra slow due to high passenger load",
+    time: "7 mins ago",
+    type: "warning",
+    station: "Andheri",
+  },
+  {
+    message: "Maintenance scheduled at Andheri Station foot overbridge from 18:00–20:00",
+    time: "15 mins ago",
+    type: "info",
+    station: "Andheri",
+  },
 ];
 
 export default function RailwayDashboard() {

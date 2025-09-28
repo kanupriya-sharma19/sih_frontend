@@ -23,7 +23,7 @@ const [chartType, setChartType] = useState("Linear");
 
       <DialogContent className="max-w-8xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
         {/* Sticky Header */}
-        <DialogHeader className="sticky top-0 bg-purple-50 z-10 border-b mt-2  border-purple-600 p-2 mb-4 w-full">
+        <DialogHeader className=" bg-purple-50 z-10 border-b mt-2  border-purple-600 p-2 mb-4 w-full">
           <DialogTitle className="text-2xl font-bold text-gray-900 w-55">Add Rolling Stock</DialogTitle>
         </DialogHeader>
 
