@@ -62,34 +62,43 @@ export function RailwayHeader() {
 
       {/* White navigation bar */}
       <div className="bg-white shadow-sm">
-        <div className="container mx-auto flex items-center justify-between px-4 h-14">
+        <div className="container mx-auto flex items-center px-4 h-14">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <Image src="/images/image.png" alt="Emblem" width={50} height={50} />
+            <Image
+              src="/images/image.png"
+              alt="Emblem"
+              width={50}
+              height={50}
+            />
           </div>
 
-          {/* Nav links */}
-          <nav className="flex items-center space-x-4">
-            {navLinks.map((link) => (
-              <Button
-                key={link.label}
-                variant="ghost"
-                className="px-4 py-2 text-black font-medium hover:bg-purple-50"
-              >
-                {link.label}
-              </Button>
-            ))}
-          </nav>
+          {/* Nav links + Logout */}
+          <div className="flex items-center flex-1 ml-6">
+            <nav className="flex items-center space-x-4">
+              {navLinks.map((link) => (
+                <Button
+                  key={link.label}
+                  variant="ghost"
+                  className="px-4 py-2 text-black font-medium hover:bg-purple-50"
+                >
+                  {link.label}
+                </Button>
+              ))}
+            </nav>
 
-          {/* Logout */}
-          <Button
-            onClick={onLogout}
-            variant="outline"
-            className="border-2 border-purple-600 text-black hover:bg-purple-50"
-          >
-            <LogOut className="h-4 w-4 mr-2" />
-            Logout
-          </Button>
+            {/* Push logout to right */}
+            <div className="ml-auto">
+              <button
+                onClick={onLogout}
+                className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
+                type="button"
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </header>

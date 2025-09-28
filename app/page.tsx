@@ -67,7 +67,7 @@ export default function RailwayDashboard() {
         </form>
       </div>
 
-      {/* Quick Navigation */}
+      {/* Quick Navigation
       <div className="text-center mt-10 z-10">
         <p className="text-white/70 mb-4">Quick Navigation</p>
         <div className="flex gap-4 justify-center">
@@ -81,7 +81,7 @@ export default function RailwayDashboard() {
             <Button variant="outline">Station Master</Button>
           </Link>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -1,14 +1,14 @@
-import type { Metadata } from "next"
-import { Analytics } from "@vercel/analytics/next"
-import { Roboto } from "next/font/google"
-import Script from "next/script"
-import "./globals.css"
-import { PageTransitionWrapper } from "@/components/page_wrapper"
+import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { Roboto } from "next/font/google";
+import Script from "next/script";
+import "./globals.css";
+import { PageTransitionWrapper } from "@/components/page_wrapper";
 
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
-})
+});
 export const metadata: Metadata = {
   title: "Drishti",
   description: "Created with v0",
@@ -16,32 +16,27 @@ export const metadata: Metadata = {
   icons: {
     icon: "/images/image.png",
   },
-}
-
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-
+    <html lang="en" suppressHydrationWarning>
       <body className={roboto.className}>
         {/* Google Translate Dropdown Container */}
         <div
-  id="google_translate_element"
-  className="fixed top-5 right-1 z-50 bg-white rounded-full p-3 text-center flex items-center justify-center"
-  style={{ boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)' }}
-/>
-
-
+          id="google_translate_element"
+          className="fixed top-5 right-5 z-50"
+        />
 
         {children}
         <Analytics />
 
         {/* Google Translate Init Script */}
-        <Script id="google-translate-init" strategy="afterInteractive"  >
+        <Script id="google-translate-init" strategy="afterInteractive">
           {`
             function googleTranslateElementInit() {
               new google.translate.TranslateElement(
@@ -63,5 +58,5 @@ export default function RootLayout({
         />
       </body>
     </html>
-  )
+  );
 }

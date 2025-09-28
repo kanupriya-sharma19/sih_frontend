@@ -23,56 +23,52 @@ export function UserForm() {
   }, [open]);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <div
-          onClick={() => {
-            /* your click logic here */
-          }}
-          className="bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-6 py-3 shadow-md rounded cursor-pointer text-center transition"
-        >
-          + Add New Employee
-        </div>
-      </DialogTrigger>
+ <Dialog open={open} onOpenChange={setOpen}>
+  <DialogTrigger asChild>
+    <button
+      className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
+    >
+      + Add New Employee
+    </button>
+  </DialogTrigger>
 
-      <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
-        {/* DialogHeader contains the title and close button (X) */}
-        <DialogHeader className="sticky top-0 bg-purple-50 z-10 border-b mt-2  border-purple-600 p-2 mb-4 w-full">
-          <DialogTitle className="text-2xl font-bold text-gray-900">
-            {showForm ? "Employee Details" : "Add New Employee"}
-          </DialogTitle>
-        </DialogHeader>
+  <DialogContent className="max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-gray-50 p-12 rounded-2xl shadow-xl">
+    <DialogHeader className="sticky top-0 bg-purple-50 z-10 border-b mt-2 border-purple-600 p-2 mb-4 w-full">
+      <DialogTitle className="text-2xl font-bold text-gray-900">
+        {showForm ? "Employee Details" : "Add New Employee"}
+      </DialogTitle>
+    </DialogHeader>
 
-        {/* Only the content below the header changes */}
-        {!showForm ? (
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-              <label className="block text-center text-gray-700 font-medium mb-2">
-                Employee ID
-              </label>
-              <div className="flex justify-center">
-                <input
-                  type="text"
-                  placeholder="Employee Id (200xxx_yyy)"
-                  maxLength={10}
-                  className="w-full max-w-xs border border-gray-300 rounded-lg p-3 bg-white focus:ring-2 focus:ring-purple-500"
-                />
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Button
-                type="button"
-                onClick={() => setShowForm(true)}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-3 px-8 rounded-xl shadow-md"
-              >
-                Add Employee
-              </Button>
-            </div>
+    {!showForm ? (
+      <div className="space-y-6">
+        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+          <label className="block text-center text-gray-700 font-medium mb-2">
+            Employee ID
+          </label>
+          <div className="flex justify-center">
+            <input
+              type="text"
+              placeholder="Employee Id (200xxx_yyy)"
+              maxLength={10}
+              className="w-full max-w-xs border border-gray-300 rounded-lg p-3 bg-white focus:ring-2 focus:ring-purple-500"
+            />
           </div>
-        ) : (
-          <EmployeeForm />
-        )}
-      </DialogContent>
-    </Dialog>
+        </div>
+        <div className="flex justify-center">
+          <Button
+            type="button"
+            onClick={() => setShowForm(true)}
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg py-2 px-6 rounded shadow-md"
+          >
+            Add Employee
+          </Button>
+        </div>
+      </div>
+    ) : (
+      <EmployeeForm />
+    )}
+  </DialogContent>
+</Dialog>
+
   );
 }

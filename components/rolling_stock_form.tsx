@@ -12,14 +12,11 @@ const [chartType, setChartType] = useState("Linear");
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-   <div
-  onClick={() => {
-    /* your click logic here */
-  }}
-  className="bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-6 py-3 shadow-md rounded cursor-pointer text-center transition"
->
-  + Add New Train
-</div>
+   <button
+      className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
+    >
+      + Add New Rlling Stock
+    </button>
 
       </DialogTrigger>
 

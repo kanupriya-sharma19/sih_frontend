@@ -53,7 +53,7 @@ export default function RailwayDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <RailwayHeader />
-      <ChatBot/>
+      <ChatBot />
       <RailwayAlertCarousel alerts={alertsPage1} />
       {/* Main Dashboard */}
       <main className="container mx-auto px-4 py-6 space-y-6">
@@ -70,127 +70,126 @@ export default function RailwayDashboard() {
           <div className="flex items-center gap-4 ml-auto">
             {/* Add Train Button + Rolling Stock Modal */}
             <RollingStockForm />
-
-       <select
-  value={selectedStation}
-  onChange={(e) => setSelectedStation(e.target.value)}
-  style={{ cursor: 'pointer', zIndex: 10 }}
-  className="
-    bg-purple-600 hover:bg-purple-700 
-    text-white text-lg font-semibold 
-    px-6 py-3 shadow-md rounded 
-    cursor-pointer transition
-    border-2 border-purple-700
-    focus:outline-none focus:ring-2 focus:ring-purple-300
-    relative"
->
-  <option value="All Stations">All Stations</option>
-  <option value="MMCT">MMCT</option>
-  <option value="Borivali">Borivali</option>
-  <option value="Bandra">Bandra</option>
-  <option value="Dadar">Dadar</option>
-  <option value="Andheri">Andheri</option>
-</select>
+            <select
+              value={selectedStation}
+              onChange={(e) => setSelectedStation(e.target.value)}
+              className="
+      border-2 border-purple-600 rounded-lg px-4 py-2
+      text-black font-medium
+      focus:outline-none focus:ring-2 focus:ring-purple-600
+      bg-white hover:bg-purple-50 transition
+    "
+            >
+              <option value="All Stations">All Stations</option>
+              <option value="MMCT">MMCT</option>
+              <option value="Borivali">Borivali</option>
+              <option value="Bandra">Bandra</option>
+              <option value="Dadar">Dadar</option>
+              <option value="Andheri">Andheri</option>
+            </select>
           </div>
         </div>
-{/* Key Metrics */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-  {/* Top row - 5 cards */}
-  <MetricCard
-    title="Section Passengers"
-    value="3.24 million"
-    subtitle={
-      <span className="flex items-center text-green-600">
-        <TrendingUp className="w-4 h-4 mr-1" /> 3.2% from yesterday
-      </span>
-    }
-    icon={Users}
-    iconColor="text-blue-500"
-  />
-  <MetricCard
-    title="Avg Section Delay"
-    value="19 min"
-    subtitle={
-      <span className="flex items-center text-red-600">
-        <TrendingDown className="w-4 h-4 mr-1" /> 1.5 min less than yesterday
-      </span>
-    }
-    icon={Clock}
-    iconColor="text-orange-500"
-  />
-  <MetricCard
-    title="Active Trains"
-    value="2,342"
-    subtitle={
-      <span className="flex items-center text-green-600">
-        <TrendingUp className="w-4 h-4 mr-1" /> 5 more than yesterday
-      </span>
-    }
-    icon={Train}
-    iconColor="text-green-500"
-  />
-  <MetricCard
-    title="Critical Delays"
-    value="60"
-    subtitle={
-      <span className="flex items-center text-red-600">
-        <TrendingUp className="w-4 h-4 mr-1" /> 2 above daily avg
-      </span>
-    }
-    icon={AlertTriangle}
-    iconColor="text-red-500"
-  />
-  <MetricCard
-    title="Total Stations"
-    value="29"
-    subtitle="Fixed across network"
-    icon={MapPin}
-    iconColor="text-purple-500"
-  />
+        {/* Key Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* Top row - 5 cards */}
+          <MetricCard
+            title="Section Passengers"
+            value="3.24 million"
+            subtitle={
+              <span className="flex items-center text-green-600">
+                <TrendingUp className="w-4 h-4 mr-1" /> 3.2% from yesterday
+              </span>
+            }
+            icon={Users}
+            iconColor="text-blue-500"
+          />
+          <MetricCard
+            title="Avg Section Delay"
+            value="19 min"
+            subtitle={
+              <span className="flex items-center text-red-600">
+                <TrendingDown className="w-4 h-4 mr-1" /> 1.5 min less than
+                yesterday
+              </span>
+            }
+            icon={Clock}
+            iconColor="text-orange-500"
+          />
+          <MetricCard
+            title="Active Trains"
+            value="2,342"
+            subtitle={
+              <span className="flex items-center text-green-600">
+                <TrendingUp className="w-4 h-4 mr-1" /> 5 more than yesterday
+              </span>
+            }
+            icon={Train}
+            iconColor="text-green-500"
+          />
+          <MetricCard
+            title="Critical Delays"
+            value="60"
+            subtitle={
+              <span className="flex items-center text-red-600">
+                <TrendingUp className="w-4 h-4 mr-1" /> 2 above daily avg
+              </span>
+            }
+            icon={AlertTriangle}
+            iconColor="text-red-500"
+          />
+          <MetricCard
+            title="Total Stations"
+            value="29"
+            subtitle="Fixed across network"
+            icon={MapPin}
+            iconColor="text-purple-500"
+          />
 
-  {/* 🔹 Center-aligned bottom row - Using grid columns */}
-  <div className="col-span-full grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
-    <div className="w-full max-w-xs">
-      <MetricCard
-        title="Track Utilization"
-        value="87%"
-        subtitle={
-          <span className="flex items-center text-green-600">
-            <TrendingUp className="w-4 h-4 mr-1" /> +2.5% from last month
-          </span>
-        }
-        icon={Activity}
-        iconColor="text-teal-500"
-      />
-    </div>
-    <div className="w-full max-w-xs">
-      <MetricCard
-        title="Throughput"
-        value="210 million ton-km"
-        subtitle={
-          <span className="flex items-center text-green-600">
-            <TrendingUp className="w-4 h-4 mr-1" /> +4.1% vs last quarter
-          </span>
-        }
-        icon={TrendingUp}
-        iconColor="text-indigo-500"
-      />
-    </div>
-    <div className="w-full max-w-xs">
-      <MetricCard
-        title="Incidents Reported"
-        value="9"
-        subtitle={
-          <span className="flex items-center text-red-600">
-            <TrendingUp className="w-4 h-4 mr-1" /> 1 above weekly avg
-          </span>
-        }
-        icon={AlertTriangle}
-        iconColor="text-rose-500"
-      />
-    </div>
-  </div>
-</div>
+          {/* 🔹 Center-aligned bottom row - Using grid columns */}
+          <div className="col-span-full grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
+            <div className="w-full max-w-xs">
+              <MetricCard
+                title="Track Utilization"
+                value="87%"
+                subtitle={
+                  <span className="flex items-center text-green-600">
+                    <TrendingUp className="w-4 h-4 mr-1" /> +2.5% from last
+                    month
+                  </span>
+                }
+                icon={Activity}
+                iconColor="text-teal-500"
+              />
+            </div>
+            <div className="w-full max-w-xs">
+              <MetricCard
+                title="Throughput"
+                value="210 million ton-km"
+                subtitle={
+                  <span className="flex items-center text-green-600">
+                    <TrendingUp className="w-4 h-4 mr-1" /> +4.1% vs last
+                    quarter
+                  </span>
+                }
+                icon={TrendingUp}
+                iconColor="text-indigo-500"
+              />
+            </div>
+            <div className="w-full max-w-xs">
+              <MetricCard
+                title="Incidents Reported"
+                value="9"
+                subtitle={
+                  <span className="flex items-center text-red-600">
+                    <TrendingUp className="w-4 h-4 mr-1" /> 1 above weekly avg
+                  </span>
+                }
+                icon={AlertTriangle}
+                iconColor="text-rose-500"
+              />
+            </div>
+          </div>
+        </div>
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
