@@ -21,6 +21,7 @@ import { PlatformOccupancy } from "@/components/platform-occupancy";
 import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {DelayParetoChart} from "@/components/DelayParetoChart";
 import {
   Dialog,
   DialogContent,
@@ -210,7 +211,7 @@ export default function RailwayDashboard() {
           <SectionDelayChart selectedStation={selectedStation} />
         </div>
         {/* Platform Occupancy + Alerts */}
-        <PlatformOccupancyChart />
+        <DelayParetoChart />
       </main>
       <TrainScheduleChart />
     </div>
