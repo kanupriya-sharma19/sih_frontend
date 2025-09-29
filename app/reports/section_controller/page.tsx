@@ -21,7 +21,7 @@ import { PlatformOccupancy } from "@/components/platform-occupancy";
 import { RealTimeAlerts } from "@/components/real-time-alerts";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {DelayParetoChart} from "@/components/DelayParetoChart";
+import { DelayParetoChart } from "@/components/DelayParetoChart";
 import {
   Dialog,
   DialogContent,
@@ -36,15 +36,38 @@ import { RailwayAlertCarousel, Alert } from "@/components/carousel";
 import { ChatBot } from "@/components/chat";
 import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
 import { TrainChart } from "@/components/TrainChart";
-type AlertItem = { type: "warning" | "info" | "success"; message: string; time: string };
+type AlertItem = {
+  type: "warning" | "info" | "success";
+  message: string;
+  time: string;
+};
 
 const page1Alerts: AlertItem[] = [
-  { type: "warning", message: "Local Train 501 Borivali–Churchgate delayed by 10 mins due to signal checks", time: "2 mins ago" },
-  { type: "warning", message: "Local Train 709 Dadar–Bandra Junction halted near Bandra due to track inspection", time: "5 mins ago" },
-  { type: "warning", message: "Local Train 601 Churchgate–Bandra slow due to high passenger load", time: "7 mins ago" },
-  { type: "info", message: "Maintenance scheduled at Dadar Station foot overbridge from 13:00–15:00", time: "15 mins ago" },
+  {
+    type: "warning",
+    message:
+      "Local Train 501 Borivali–Churchgate delayed by 10 mins due to signal checks",
+    time: "2 mins ago",
+  },
+  {
+    type: "warning",
+    message:
+      "Local Train 709 Dadar–Bandra Junction halted near Bandra due to track inspection",
+    time: "5 mins ago",
+  },
+  {
+    type: "warning",
+    message:
+      "Local Train 601 Churchgate–Bandra slow due to high passenger load",
+    time: "7 mins ago",
+  },
+  {
+    type: "info",
+    message:
+      "Maintenance scheduled at Dadar Station foot overbridge from 13:00–15:00",
+    time: "15 mins ago",
+  },
 ];
-
 
 export default function RailwayDashboard() {
   const [selectedStation, setSelectedStation] = useState("All Stations");
@@ -61,67 +84,13 @@ export default function RailwayDashboard() {
       type: "danger",
       station: "CSMT",
     },
+
     {
-      message: "Track Maintenance Work",
-      time: "9:30am",
-      type: "danger",
-      station: "Borivali",
+      message: "Express Train 22119 departed CST on time",
+      time: "2:45pm",
+      type: "success",
+      station: "CST Mumbai",
     },
-      {
-    message: "Train 19015 Mumbai Central–Ahmedabad Express delayed by 25 mins",
-    time: "5:00pm",
-    type: "warning",
-    station: "Mumbai Central",
-  },
-  {
-    message:
-      "Train 12957 Bandra Terminus–Gandhinagar Express halted near Borivali due to signal checks",
-    time: "4:55pm",
-    type: "warning",
-    station: "Borivali",
-  },
-  {
-    message: "All signal systems operational in Western Railways zone",
-    time: "5:10pm",
-    type: "success",
-    station: "Western Zone",
-  },
-  {
-    message: "Local Train 501 Borivali–Churchgate delayed by 8 mins near Andheri",
-    time: "5:15pm",
-    type: "warning",
-    station: "Andheri",
-  },
-  {
-    message: "Maintenance scheduled at Andheri Station foot overbridge from 18:00–20:00",
-    time: "3:00pm",
-    type: "info",
-    station: "Andheri",
-  },
-  {
-    message: "Track inspection ongoing at Dadar station, Platform 5 temporarily closed",
-    time: "4:30pm",
-    type: "info",
-    station: "Dadar",
-  },
-  {
-    message: "Express Train 22119 departed CST on time",
-    time: "2:45pm",
-    type: "success",
-    station: "CST Mumbai",
-  },
-  {
-    message: "Heavy crowd reported at Thane Station during peak hours",
-    time: "6:00pm",
-    type: "warning",
-    station: "Thane",
-  },
-  {
-    message: "Emergency medical assistance provided to passenger at Borivali",
-    time: "6:15pm",
-    type: "info",
-    station: "Borivali",
-  },
   ];
 
   return (
@@ -145,7 +114,7 @@ export default function RailwayDashboard() {
             {/* Add Train Button + Rolling Stock Modal */}
             <RollingStockForm />
             <select
-            suppressHydrationWarning
+              suppressHydrationWarning
               value={selectedStation}
               onChange={(e) => setSelectedStation(e.target.value)}
               className="
@@ -265,21 +234,19 @@ export default function RailwayDashboard() {
             </div>
           </div>
         </div>
-        
-         <TrainScheduleChart />
-        
+
+        <TrainScheduleChart />
 
         {/* Charts */}
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SectionPassengerChart selectedStation={selectedStation} />
           <SectionDelayChart selectedStation={selectedStation} />
         </div>
         {/* Platform Occupancy + Alerts */}
         <DelayParetoChart />
-       <PunctualityTrendChart />
+        <PunctualityTrendChart />
       </main>
-     
     </div>
   );
 }
