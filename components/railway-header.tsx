@@ -26,7 +26,7 @@ export function RailwayHeader() {
       <div className="bg-[#6C4EFF] text-white text-sm">
         <div className="container mx-auto flex items-center justify-between px-4 h-8">
           <div className="flex items-center space-x-2">
-            <span>Government of Railways</span>
+            <span>Ministry of Railways</span>
           </div>
           <div className="flex items-center space-x-4">
             <a href="#" className="hover:underline">

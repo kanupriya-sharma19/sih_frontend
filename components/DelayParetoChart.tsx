@@ -64,10 +64,31 @@ export function DelayParetoChart() {
             <XAxis dataKey="reason" angle={-15} textAnchor="end" height={60} />
             
             {/* Primary Y-axis for the bar counts */}
-            <YAxis yAxisId="left" orientation="left" stroke="#4F46E5" label={{ value: 'Number of Incidents', angle: -90, position: 'insideLeft' }} />
+<YAxis
+  yAxisId="left"
+  orientation="left"
+  stroke="#4F46E5"
+  label={{
+    value: 'Number of Incidents',
+    angle: -90,
+    position: 'center',   // vertically centered
+  }}
+/>
             
             {/* Secondary Y-axis for the cumulative percentage line */}
-            <YAxis yAxisId="right" orientation="right" stroke="#4F46E5" domain={[0, 100]} tickFormatter={(tick) => `${tick}%`} label={{ value: 'Cumulative Percentage', angle: -90, position: 'insideRight' }} />
+<YAxis
+  yAxisId="right"
+  orientation="right"
+  stroke="#4F46E5"
+  domain={[0, 100]}
+  tickFormatter={(tick) => `${tick}%`}
+  label={{
+    value: 'Cumulative Percentage',
+    angle: -90,
+    position: 'insideRight',
+    dy: 20, // moves label away from the axis
+  }}
+/>
 
             <Tooltip formatter={(value, name) => (name === 'Cumulative' ? `${value}%` : value)} />
             <Legend />

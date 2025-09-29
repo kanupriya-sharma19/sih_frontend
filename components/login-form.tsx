@@ -23,8 +23,8 @@ export function LoginForm() {
     let route = ""
 
     if (firstDigit === "1") route = "/reports/admin"
-    else if (firstDigit === "2") route = "/reports/station_master"
-    else if (firstDigit === "3") route = "/reports/section_controller"
+    else if (firstDigit === "3") route = "/reports/station_master"
+    else if (firstDigit === "2") route = "/reports/section_controller"
     else return alert("Invalid User ID")
 
     router.push(route) 

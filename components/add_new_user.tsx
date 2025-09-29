@@ -49,7 +49,7 @@ export function UserForm() {
           <div className="flex justify-center">
             <input
               type="text"
-              placeholder="Employee Id (2xxxxxxx)"
+              placeholder="Employee Id (3xxxxx)"
               maxLength={10}
               className="w-full max-w-xs border border-gray-300 rounded-lg p-3 bg-white focus:ring-2 focus:ring-purple-500"
             />

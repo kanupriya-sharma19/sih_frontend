@@ -15,7 +15,6 @@ interface SectionDelayChartProps {
   selectedStation: string
 }
 
-// Data for delays
 const data: Record<string, any[]> = {
   "All Stations": [
     { station: "MMCT", delay: 12 },
@@ -67,7 +66,6 @@ const data: Record<string, any[]> = {
 }
 
 export function SectionDelayChart({ selectedStation }: SectionDelayChartProps) {
-  // Fallback to "All Stations" if the key doesn't exist
   const chartData = data[selectedStation] ?? data["All Stations"]
 
   return (
@@ -83,8 +81,25 @@ export function SectionDelayChart({ selectedStation }: SectionDelayChartProps) {
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey={selectedStation === "All Stations" ? "station" : "hour"} />
-            <YAxis />
+            <XAxis
+              dataKey={selectedStation === "All Stations" ? "station" : "hour"}
+              label={{
+                value: selectedStation === "All Stations" ? "Station" : "Hour",
+                position: "insideBottom",
+                offset: -4,
+                style: { fontWeight: "bold", textAnchor: "middle" },
+              }}
+            />
+            <YAxis
+              label={{
+                value: "Delay (minutes)",
+                angle: -90,
+                position: "insideLeft",
+                dx: 4,
+                dy: 0,
+                style: { fontWeight: "bold", textAnchor: "middle"},
+              }}
+            />
             <Tooltip />
             <Bar dataKey="delay" fill="#2563eb" />
           </BarChart>

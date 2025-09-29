@@ -19,7 +19,7 @@ export function EmployeeForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-700">
         <p>
-          <span className="font-semibold">Employee ID:</span> 20056478
+          <span className="font-semibold">Employee ID:</span> 305647
         </p>
         <p>
           <span className="font-semibold">Name:</span> Moksh Jhaveri

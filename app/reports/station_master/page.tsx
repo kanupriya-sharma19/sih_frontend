@@ -29,6 +29,7 @@ import { ChatBot } from "@/components/chat";
 import { PlatformOccupancyChart } from "@/components/PlatformOccupancyChart";
 import { useRouter } from "next/navigation";
 import {RealTimeAlerts} from "@/components/real-time-alerts"
+import{DelayAnalysisChart} from "@/components/delay-analysis-chart"
 
 type AlertItem = { type: "warning" | "info" | "success"; message: string; time: string };
 
@@ -219,16 +220,19 @@ export default function RailwayDashboard() {
           </div>
         </div>
 
-=
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <PassengerFlowChart />
           <HourlyDelayChart />
+          <DelayAnalysisChart/>
           <PeakHoursChart />
-          <DelayDistributionChart />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* <PassengerFlowChart /> */}
-        </div>
+       <div className="flex justify-center items-center w-full">
+  <div className="w-full lg:w-2/4">
+    <DelayDistributionChart />
+  </div>
+</div>
+
         
         <PitLineChart />
         <PlatformOccupancyChart />
