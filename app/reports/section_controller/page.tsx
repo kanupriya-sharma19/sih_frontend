@@ -111,6 +111,14 @@ export default function RailwayDashboard() {
 
           {/* Right-side controls */}
           <div className="flex items-center gap-4 ml-auto">
+         <button
+  suppressHydrationWarning
+  className="bg-purple-600 hover:bg-purple-700 text-white text-base font-semibold px-4 py-2 rounded shadow-md cursor-pointer transition flex items-center justify-center"
+  onClick={() => window.open("/images/sim.jpeg", "_blank")}
+>
+  Live Simulation
+</button>
+
             {/* Add Train Button + Rolling Stock Modal */}
             <RollingStockForm />
             <select
