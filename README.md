@@ -99,7 +99,7 @@ The system enables **faster, safer, and more efficient train operations** throug
 
 ## 👥 Team
 
-**Official Repository for NIRNAY**
+**Official Repository for DRISHTI**
 
 Maintained by:
 
